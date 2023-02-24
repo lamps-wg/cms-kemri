@@ -12,7 +12,7 @@ pi:
 title: 'Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic Message Syntax (CMS)'
 abbrev: CMS KEMRecipientInfo
 submissionType: IETF
-area: Security
+area: "Security"
 kw: Internet-Draft
 date:
 
