@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lamps-cms-kemri-latest
+docname: draft-ietf-lamps-kemri-latest
 cat: std
 wg: LAMPS Working Group
 consensus: 'true'
