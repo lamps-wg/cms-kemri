@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lamps-cms-kemri-02
+docname: draft-ietf-lamps-cms-kemri-latest
 cat: std
 wg: LAMPS Working Group
 consensus: 'true'
@@ -14,7 +14,7 @@ abbrev: CMS KEMRecipientInfo
 submissionType: IETF
 area: "Security"
 kw: Internet-Draft
-date: 2023-07-23
+date: 
 
 author:
 - name: Russ Housley
