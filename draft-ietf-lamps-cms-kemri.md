@@ -14,7 +14,7 @@ abbrev: CMS KEMRecipientInfo
 submissionType: IETF
 area: "Security"
 kw: Internet-Draft
-date: 
+date:
 
 author:
 - name: Russ Housley
@@ -635,7 +635,7 @@ Our thanks to Burt Kaliski for his guidance and design review.
 
 Our thanks to Carl Wallace for his careful review of the ASN.1 modules.
 
-Our thanks to 
+Our thanks to
 Hendrik Brockhaus,
 Jonathan Hammell,
 Mike Jenkins, and
