@@ -268,12 +268,12 @@ identified in the wrap field below.
 > ukm is optional user keying material.  When the ukm value is provided,
 it is used as part of the info structure described in {{kdf}} to
 provide a context input to the key-derivation function.  For example, the
-ukm value could include a nonce, context information, or an identifier
-for the originator.  A KEM algorithm may place requirements on the ukm
-value.  Implementations that do not support the ukm field SHOULD
-gracefully discontinue processing when the ukm field is present.  Note
-that this requirement expands the original purpose of the ukm
-described in Section 10.2.6 of {{RFC5652}}; it is not limited to being
+ukm value could include a nonce, application-specific context information,
+or an identifier for the originator.  A KEM algorithm may place
+requirements on the ukm value.  Implementations that do not support the
+ukm field SHOULD gracefully discontinue processing when the ukm field is
+present.  Note that this requirement expands the original purpose of the
+ukm described in Section 10.2.6 of {{RFC5652}}; it is not limited to being
 used with key agreement algorithms.
 
 > wrap identifies a key-encryption algorithm used to encrypt the
