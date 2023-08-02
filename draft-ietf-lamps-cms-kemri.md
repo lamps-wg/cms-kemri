@@ -155,8 +155,7 @@ KEM algorithms can be used with  three CMS content types: the
 enveloped-data content type {{RFC5652}}, the authenticated-data
 content type {{RFC5652}}, or the authenticated-enveloped-data
 content type {{RFC5083}}.  For simplicity, the terminology associated
-with the enveloped-data content type will be used in this overview.  Thus,
-the content-encryption key is used to protect the in CMS content.
+with the enveloped-data content type will be used in this overview.
 
 The originator randomly generates the content-encryption key, and then
 all recipients obtain that key.  All recipients use the originator-generated
@@ -166,7 +165,7 @@ A KEM algorithm and a key-derivation function are used to securely
 establish a pairwise symmetric key-encryption key, which is used to encrypt
 the originator-generated content-encryption key.
 
-In advance, each recipient recipient uses KeyGen() to create a key pair,
+In advance, each recipient uses KeyGen() to create a key pair,
 and then obtains a certificate {{RFC5280}} that includes the public key.
 
 The originator establishes the content-encryption key using these steps:
@@ -177,17 +176,21 @@ The originator establishes the content-encryption key using these steps:
 
     - The recipient's public key is used with the Encapsulate() function to obtain a pairwise shared secret and the ciphertext for the recipient.
 
-    - The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is send in the clear.
+    - The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
 
     - The KEK is used to encrypt the CEK for this recipient.
+
+3. The CEK is used to encrypt the content for all recipients.
 
 The recipient obtains the content-encryption key using these steps:
 
 1. The recipient's private key and the ciphertext are used with the Decapsulate() function to obtain a pairwise shared secret.
 
-2. The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is send in the clear.
+2. The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
 
 3. The KEK is used to decrypt the content-encryption key, called CEK.
+
+4. The CEK is used to decrypt the content.
 
 # KEM Recipient Information {#kemri}
 
@@ -203,7 +206,7 @@ The object identifier associated with KEMRecipientInfo is:
   id-ori OBJECT IDENTIFIER ::= { iso(1) member-body(2) us(840)
     rsadsi(113549) pkcs(1) pkcs-9(9) smime(16) 13 }
 
-  id-ori-kem OBJECT IDENTIFIER ::= { id-ori TBD1 }
+  id-ori-kem OBJECT IDENTIFIER ::= { id-ori 3 }
 ~~~
 
 The KEMRecipientInfo type is:
@@ -215,7 +218,7 @@ The KEMRecipientInfo type is:
     kem KEMAlgorithmIdentifier,
     kemct OCTET STRING,
     kdf KeyDerivationAlgorithmIdentifier,
-    kekLength INTEGER (1..MAX),
+    kekLength INTEGER (1..65535),
     ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL,
     wrap KeyEncryptionAlgorithmIdentifier,
     encryptedKey EncryptedKey }
@@ -256,17 +259,22 @@ used by the originator to generate the key-encryption key.  The
 KeyDerivationAlgorithmIdentifier is described in Section 10.1.6 of {{RFC5652}}.
 
 > kekLength is the size of the key-encryption key in octets.  This value is one
-of the inputs to the key-derivation function.  Implementations MUST confirm
-that the value provided is consistent with the key-encryption algorithm
+of the inputs to the key-derivation function.  The upper bound on the integer
+value is provided to make it clear to implementers that support for very
+large integer values is not needed.  Implementations MUST confirm that
+the value provided is consistent with the key-encryption algorithm
 identified in the wrap field below.
 
-> ukm is optional.  When the ukm value is provided, it is used as an input to
-the key-derivation function as a context input.  For example, user key
-material could  include a nonce, an IV, or other data required by the
-key-derivation function.  Implementations MUST accept a KEMRecipientInfo
-SEQUENCE that includes a ukm field.  Note that this expands of the original
-purpose of the ukm described in Section 10.2.6 of {{RFC5652}}; it is not
-limited to being used with key agreement algorithms.
+> ukm is optional user keying material.  When the ukm value is provided,
+it is used as part of the info structure described in {{kdf}} to
+provide a context input to the key-derivation function.  For example, the
+ukm value could include a nonce, application-specific context information,
+or an identifier for the originator.  A KEM algorithm may place
+requirements on the ukm value.  Implementations that do not support the
+ukm field SHOULD gracefully discontinue processing when the ukm field is
+present.  Note that this requirement expands the original purpose of the
+ukm described in Section 10.2.6 of {{RFC5652}}; it is not limited to being
+used with key agreement algorithms.
 
 > wrap identifies a key-encryption algorithm used to encrypt the
 content-encryption key.  The KeyEncryptionAlgorithmIdentifier
@@ -287,7 +295,7 @@ the pairwise shared secret value into a key-encryption key.
   KEMAlgorithmIdentifier ::= AlgorithmIdentifier
 ~~~
 
-# Key Derivation
+# Key Derivation {#kdf}
 
 This section describes the conventions of using the KDF to compute the
 key-encryption key for KEMRecipientInfo.  For simplicity, the
@@ -308,19 +316,19 @@ IKM is dependent on the algorithm identified in the
 KeyDerivationAlgorithmIdentifier.
 
 > L is the length of the output keying material in octets which is
-identified in the keklength of the KEMRecipientInfo.  The
+identified in the kekLength of the KEMRecipientInfo.  The
 value is dependent on the key-encryption algorithm that is used
 which is identified in the KeyEncryptionAlgorithmIdentifier.
 
-> info is the context used as in additional input to the KDF; it is
-the DER-encoded CMSORIforKEMOtherInfo structure defined as:
+> info is contextual input to the KDF.  The DER-encoded
+CMSORIforKEMOtherInfo structure is created from elements of the
+KEMRecipientInfo structure.  CMSORIforKEMOtherInfo is defined as:
 
 ~~~
-  CMSORIforKEMOtherInfo ::= SEQUENCE {
-    wrap KeyEncryptionAlgorithmIdentifier,
-    kekLength INTEGER (1..MAX),
-    ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL
-  }
+      CMSORIforKEMOtherInfo ::= SEQUENCE {
+        wrap KeyEncryptionAlgorithmIdentifier,
+        kekLength INTEGER (1..65535),
+        ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL }
 ~~~
 
 The CMSORIforKEMOtherInfo structure contains:
@@ -331,9 +339,7 @@ key-derivation function will be used as a key for this algorithm.
 > kekLength is the length of the key-encryption key in octets; the
 output of the key-derivation function will be exactly this size.
 
-> ukm is optional user keying material, which may be useful for some
-key-derivation functions.  For example, user keying material could
-include a nonce, an IV, or additional key binding information.
+> ukm is optional user keying material; see {{kemri}}.
 
 The KDF output is:
 
@@ -341,12 +347,10 @@ The KDF output is:
 The OKM is the key-encryption key that is used to encrypt the
 content-encryption key or the content-authenticated-encryption key.
 
-An acceptable KDF MUST accept an IKM and L as inputs; an acceptable
-KDF MAY also accept salt and other inputs identified in the
-UserKeyingMaterial.  All of these inputs MUST influence the
-output of the KDF.  If the KDF requires a salt or other inputs, then
-those input MUST be provided as parameters of the
-KeyDerivationAlgorithmIdentifier.
+An acceptable KDF MUST accept an IKM, L, and info as inputs.  An acceptable
+KDF MAY also accept salt, which is carried as a parameter to the
+KeyDerivationAlgorithmIdentifier if present.  All of these
+inputs MUST influence the output of the KDF.
 
 # ASN.1 Modules {#asn1-mod}
 
@@ -490,7 +494,7 @@ to this document.
     kem KEMAlgorithmIdentifier,
     kemct OCTET STRING,
     kdf KeyDerivationAlgorithmIdentifier,
-    kekLength INTEGER (1..MAX),
+    kekLength INTEGER (1..65535),
     ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL,
     wrap KeyEncryptionAlgorithmIdentifier,
     encryptedKey EncryptedKey }
@@ -506,9 +510,8 @@ to this document.
 
   CMSORIforKEMOtherInfo ::= SEQUENCE {
     wrap KeyEncryptionAlgorithmIdentifier,
-    kekLength INTEGER (1..MAX),
-    ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL
-  }
+    kekLength INTEGER (1..65535),
+    ukm [0] EXPLICIT UserKeyingMaterial OPTIONAL }
 
   END
 ~~~
@@ -540,7 +543,7 @@ key-encryption key SHOULD at least have the security level of
 the KEM.
 
 KEM algorithms do not provide data origin authentication; therefore, when
-a KEM algorithm is used to with the authenticated-data content type, the
+a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.
 
 Implementations MUST protect the KEM private key, the key-encryption key, the
@@ -609,18 +612,21 @@ for the set of supported algorithms to change over time.
 
 For KEMRecipientInfo in {{kemri}}, IANA is requested to assign an
 object identifier (OID) to replace TBD1.  The OID for KEMRecipientInfo should
-be allocated  in the "SMI Security for S/MIME Other Recipient Info
-Identifiers" registry (1.2.840.113549.1.9.16.13).
+be allocated in the "SMI Security for S/MIME Other Recipient Info
+Identifiers" registry (1.2.840.113549.1.9.16.13), and the Description
+for the new OID should be set to "id-ori-kem".
 
 For the ASN.1 Module in {{asn1-mod-1}}, IANA is requested to assign an
 object identifier (OID) for the module identifier to replace TBD3. The
 OID for the module should be allocated in the "SMI Security for PKIX
-Module Identifier" registry (1.3.6.1.5.5.7.0).
+Module Identifier" registry (1.3.6.1.5.5.7.0), and the Description
+for the new OID should be set to "id-mod-kemAlgorithmInformation-2023".
 
 For the ASN.1 Module in {{asn1-mod-2}}, IANA is requested to assign an
 object identifier (OID) for the module identifier to replace TBD2.  The
 OID for the module should be allocated in the "SMI Security for S/MIME
-Module Identifier" registry (1.2.840.113549.1.9.16.0).
+Module Identifier" registry (1.2.840.113549.1.9.16.0), and the Description
+for the new OID should be set to "id-mod-cms-kemri-2023".
 
 # Acknowledgements
 {: numbered="no"}
@@ -628,5 +634,12 @@ Module Identifier" registry (1.2.840.113549.1.9.16.0).
 Our thanks to Burt Kaliski for his guidance and design review.
 
 Our thanks to Carl Wallace for his careful review of the ASN.1 modules.
+
+Our thanks to
+Hendrik Brockhaus,
+Jonathan Hammell,
+Mike Jenkins, and
+David von Oheimb
+for their careful review and thoughtful comments.
 
 --- back
