@@ -638,7 +638,7 @@ Our thanks to Carl Wallace for his careful review of the ASN.1 modules.
 Our thanks to
 Hendrik Brockhaus,
 Jonathan Hammell,
-Mike Jenkins, 
+Mike Jenkins,
 David von Oheimb, and
 Francois Rousseau
 for their careful review and thoughtful comments.
