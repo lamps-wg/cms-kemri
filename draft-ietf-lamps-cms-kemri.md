@@ -80,7 +80,7 @@ key agreement algorithms.  In recent years, cryptographers have been
 specifying Key Encapsulation Mechanism (KEM) algorithms, including
 quantum-secure KEM algorithms.  This document defines conventions for
 the use of KEM algorithms by the originator and recipients to encrypt
-CMS content.
+and decrypt CMS content.
 
 --- middle
 
@@ -638,8 +638,9 @@ Our thanks to Carl Wallace for his careful review of the ASN.1 modules.
 Our thanks to
 Hendrik Brockhaus,
 Jonathan Hammell,
-Mike Jenkins, and
-David von Oheimb
+Mike Jenkins, 
+David von Oheimb, and
+Francois Rousseau
 for their careful review and thoughtful comments.
 
 --- back
