@@ -292,7 +292,7 @@ the KEM algorithm used.  A Key derivation algorithm is used to transform
 the pairwise shared secret value into a key-encryption key.
 
 ~~~
-  KEMAlgorithmIdentifier ::= AlgorithmIdentifier
+  KEMAlgorithmIdentifier ::= AlgorithmIdentifier{ KEM-ALGORITHM, {...} }
 ~~~
 
 # Key Derivation {#kdf}
@@ -482,7 +482,7 @@ to this document.
   id-ori OBJECT IDENTIFIER ::= { iso(1) member-body(2) us(840)
     rsadsi(113549) pkcs(1) pkcs-9(9) smime(16) 13 }
 
-  id-ori-kem OBJECT IDENTIFIER ::= { id-ori TBD1 }
+  id-ori-kem OBJECT IDENTIFIER ::= { id-ori 3 }
 
   --
   -- KEMRecipientInfo
@@ -610,11 +610,10 @@ for the set of supported algorithms to change over time.
 
 # IANA Considerations {#iana}
 
-For KEMRecipientInfo in {{kemri}}, IANA is requested to assign an
-object identifier (OID) to replace TBD1.  The OID for KEMRecipientInfo should
-be allocated in the "SMI Security for S/MIME Other Recipient Info
-Identifiers" registry (1.2.840.113549.1.9.16.13), and the Description
-for the new OID should be set to "id-ori-kem".
+For KEMRecipientInfo in {{kemri}}, IANA has assigned the object identifier (OID)
+fo (1.2.840.113549.1.9.16.13.3) in the "SMI Security for S/MIME Other Recipient
+Info Identifiers" registry (1.2.840.113549.1.9.16.13), and the Description
+for the new OID has been set to "id-ori-kem".
 
 For the ASN.1 Module in {{asn1-mod-1}}, IANA is requested to assign an
 object identifier (OID) for the module identifier to replace TBD3. The
