@@ -611,7 +611,7 @@ for the set of supported algorithms to change over time.
 # IANA Considerations {#iana}
 
 For KEMRecipientInfo in {{kemri}}, IANA has assigned the object identifier (OID)
-fo (1.2.840.113549.1.9.16.13.3) in the "SMI Security for S/MIME Other Recipient
+for (1.2.840.113549.1.9.16.13.3) in the "SMI Security for S/MIME Other Recipient
 Info Identifiers" registry (1.2.840.113549.1.9.16.13), and the Description
 for the new OID has been set to "id-ori-kem".
 
