@@ -5,6 +5,7 @@ docname: draft-ietf-lamps-cms-kemri-latest
 cat: std
 wg: LAMPS Working Group
 consensus: 'true'
+updates: 5652
 pi:
   toc: 'yes'
   sortrefs: 'yes'
@@ -117,11 +118,11 @@ passed to the recipient and shared secret (ss) for the originator.
 shared secret (ss) for the recipient.
 
 To support a particular KEM algorithm, the CMS originator MUST implement
-Encapsulate().
+the KEM Encapsulate() function.
 
-To support a particular KEM algorithm, the CMS recipient MUST implement
-KeyGen() and Decapsulate().  The recipient's public key is usually carried
-in a certificate {{RFC5280}}.
+To support a particular KEM algorithm, the CMS recipient MUST implement the KEM
+KeyGen() function and the KEM Decapsulate() function.  The recipient's public key
+is usually carried in a certificate {{RFC5280}}.
 
 ## Terminology {#terms}
 
@@ -165,8 +166,10 @@ A KEM algorithm and a key-derivation function are used to securely
 establish a pairwise symmetric key-encryption key, which is used to encrypt
 the originator-generated content-encryption key.
 
-In advance, each recipient uses KeyGen() to create a key pair,
-and then obtains a certificate {{RFC5280}} that includes the public key.
+In advance, each recipient uses the KEM KeyGen() function to create a key pair.  The
+recipient will often obtain a certificate {{RFC5280}} that includes the newly
+generated public key.  Whether the public key is certified or not, the newly
+generated public key is made available to potential originators.
 
 The originator establishes the content-encryption key using these steps:
 
@@ -174,7 +177,7 @@ The originator establishes the content-encryption key using these steps:
 
 2. For each recipient:
 
-    - The recipient's public key is used with the Encapsulate() function to obtain a pairwise shared secret and the ciphertext for the recipient.
+    - The recipient's public key is used with the KEM Encapsulate() function to obtain a pairwise shared secret and the ciphertext for the recipient.
 
     - The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
 
@@ -184,7 +187,7 @@ The originator establishes the content-encryption key using these steps:
 
 The recipient obtains the content-encryption key using these steps:
 
-1. The recipient's private key and the ciphertext are used with the Decapsulate() function to obtain a pairwise shared secret.
+1. The recipient's private key and the ciphertext are used with the KEM Decapsulate() function to obtain a pairwise shared secret.
 
 2. The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
 
@@ -230,7 +233,7 @@ The fields of the KEMRecipientInfo type have the following meanings:
 CMSVersion type is described in Section 10.2.5 of {{RFC5652}}.
 
 > rid specifies the recipient's certificate or key that was used by
-the originator to with the Encapsulate() function.  The
+the originator to with the KEM Encapsulate() function.  The
 RecipientIdentifier provides two alternatives for specifying the
 recipient's certificate {{RFC5280}}, and thereby the recipient's public
 key.  The recipient's certificate MUST contain a KEM public key.  Therefore,
@@ -238,7 +241,7 @@ a recipient X.509 version 3 certificate that contains a key usage
 extension MUST assert the keyEncipherment bit.  The issuerAndSerialNumber
 alternative identifies the recipient's certificate by the issuer's
 distinguished name and the certificate serial number; the
-subjectKeyIdentifier identifies the recipient's certificate by a key
+subjectKeyIdentifier alternative identifies the recipient's certificate by a key
 identifier.  When an X.509 certificate is referenced, the key identifier
 matches the X.509 subjectKeyIdentifier extension value.  When other
 certificate formats are referenced, the documents that specify the certificate
@@ -251,7 +254,7 @@ implementations MUST support at least one of these alternatives.
 > kem identifies the KEM algorithm, and any associated parameters, used
 by the originator.  The KEMAlgorithmIdentifier is described in {{kemalg}}.
 
-> kemct is the ciphertext produced by the Encapsulate() function for
+> kemct is the ciphertext produced by the KEM Encapsulate() function for
 this recipient.
 
 > kdf identifies the key-derivation algorithm, and any associated parameters,
@@ -532,9 +535,7 @@ obtaining IND-CCA2 security with public key reuse is to apply the
 Fujisaki-Okamoto (FO) transform {{FO}} or a variant of the FO
 transform {{HHK}}.
 
-The choice of the KDF SHOULD be made based on the security
-level provided by the KEM. The KDF SHOULD at least have the
-security level of the KEM.
+The KDF SHOULD offer at least the security level of the KEM.
 
 The choice of the key-encryption algorithm and the size of the
 key-encryption key SHOULD be made based on the security level
@@ -554,7 +555,7 @@ content-encryption key, or the content-authenticated-encryption may result in
 disclosure of the encrypted content of a single message.
 
 The KEM produces the IKM input value for the KDF.  This IKM value MUST NOT
-be reused for any other purpose.  Likewise, any random value used to by
+be reused for any other purpose.  Likewise, any random value used by
 the KEM algorithm to produce the shared secret or its encapsulation MUST NOT
 be reused for any other purpose.  That is, the originator MUST generate a
 fresh KEM shared secret for each recipient in the KEMRecipientInfo
