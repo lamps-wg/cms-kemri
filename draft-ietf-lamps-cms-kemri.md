@@ -91,7 +91,7 @@ The Cryptographic Message Syntax (CMS) enveloped-data content type
 {{RFC5652}} and the CMS authenticated-enveloped-data content type
 {{RFC5083}} support both key transport and key agreement algorithms to
 establish the key used to encrypt the content.  In recent years,
-cryptographers have be specifying Key Encapsulation Mechanism (KEM)
+cryptographers have been specifying Key Encapsulation Mechanism (KEM)
 algorithms, including quantum-secure KEM algorithms.  This document
 defines conventions for the use of KEM algorithms for the CMS
 enveloped-data content type and the CMS authenticated-enveloped-data
@@ -99,9 +99,11 @@ content type.
 
 A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
-public key.  The recipient's private key is needed to recover the random
-keying material, which is then treated as a pairwise shared secret between
-the originator and recipient.  A KEM algorithm provides three functions:
+public key.  This means that the originator and the recipients do not need
+to be online at the same time.  The recipient's private key is needed to
+recover the random keying material, which is then treated as a pairwise shared
+secret between the originator and recipient.  A KEM algorithm provides three
+functions:
 
 * KeyGen() -> (pk, sk):
 
@@ -135,20 +137,18 @@ Encoding Rules (BER) and the Distinguished Encoding Rules (DER) {{X.690}}.
 
 ## CMS Version Numbers
 
-The major data structures include a version number as the first item in
-the data structure.  The version number is intended to avoid ASN.1 decode
-errors.  Some implementations do not check the version number prior to
-attempting a decode, and then if a decode error occurs, the version
-number is checked as part of the error handling routine.  This is a
-reasonable approach; it places error processing outside of the fast path.
-This approach is also forgiving when an incorrect version number is used
-by the sender.
+As described in {{Section 1.3 of RFC5652}}, the major data structures include a
+version number as the first item in the data structure.  The version number is
+intended to avoid ASN.1 decode errors.  Some implementations do not check the
+version number prior to attempting a decode, and then if a decode error
+occurs, the version number is checked as part of the error handling routine.  This
+is a reasonable approach; it places error processing outside of the fast path.  This
+approach is also forgiving when an incorrect version number is used by the originator.
 
 Whenever the structure is updated, a higher version number will be
 assigned.  However, to ensure maximum interoperability, the higher
-version number is only used when the new syntax feature is employed.
-That is, the lowest version number that supports the generated syntax is
-used.
+version number is only used when the new syntax feature is employed.  That
+is, the lowest version number that supports the generated syntax is used.
 
 # KEM Processing Overview
 
@@ -351,8 +351,8 @@ The OKM is the key-encryption key that is used to encrypt the
 content-encryption key or the content-authenticated-encryption key.
 
 An acceptable KDF MUST accept an IKM, L, and info as inputs.  An acceptable
-KDF MAY also accept salt, which is carried as a parameter to the
-KeyDerivationAlgorithmIdentifier if present.  All of these
+KDF MAY also accept a salt input value, which is carried as a parameter to
+the KeyDerivationAlgorithmIdentifier if present.  All of these
 inputs MUST influence the output of the KDF.
 
 # ASN.1 Modules {#asn1-mod}
@@ -639,8 +639,9 @@ Our thanks to
 Hendrik Brockhaus,
 Jonathan Hammell,
 Mike Jenkins,
-David von Oheimb, and
-Francois Rousseau
+David von Oheimb,
+Francois Rousseau, and
+Linda Dunbar
 for their careful review and thoughtful comments.
 
 --- back
