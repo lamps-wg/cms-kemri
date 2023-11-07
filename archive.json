@@ -1,0 +1,259 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-11-07T01:15:21.748253+00:00",
+  "repo": "lamps-wg/cms-kemri",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOJCFEHs5xeoX8",
+      "title": "Suggestion from Fran\u00e7ois",
+      "url": "https://github.com/lamps-wg/cms-kemri/issues/3",
+      "state": "OPEN",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The first sentence of the section 1 should read:\r\n\r\n\u2026[RFC5083] support both key transport and key agreement algorithms to establish the key used to encrypt and decrypt the content.",
+      "createdAt": "2023-09-19T23:31:09Z",
+      "updatedAt": "2023-09-19T23:31:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOJCFEHs5x8TMS",
+      "title": "Make this a Public Repo",
+      "url": "https://github.com/lamps-wg/cms-kemri/issues/4",
+      "state": "CLOSED",
+      "author": "seanturner",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "russhousley"
+      ],
+      "labels": [],
+      "body": "I just noticed that this is a \"Private\" repo, should probably change it to be \"Public\"",
+      "createdAt": "2023-09-25T14:26:13Z",
+      "updatedAt": "2023-09-25T14:45:22Z",
+      "closedAt": "2023-09-25T14:45:21Z",
+      "comments": [
+        {
+          "author": "russhousley",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Done. Fixes #4.",
+          "createdAt": "2023-09-25T14:45:21Z",
+          "updatedAt": "2023-09-25T14:45:21Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOJCFEHs5WTBsB",
+      "title": "Jg updates",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/1",
+      "state": "MERGED",
+      "author": "johngray-dev",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Creating pull request to add the update into the main branch.   Resolved the automatic build issues.\r\n- We may still need a section for changes to the document since last update",
+      "createdAt": "2023-07-25T06:41:09Z",
+      "updatedAt": "2023-08-02T18:37:16Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "2c3563052a4ea7740f53fc14ff9e28138268a8fc",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "jg-updates",
+      "headRefOid": "0f6498f8c1f19dc823bc3f675dcc8457e180e937",
+      "closedAt": "2023-08-02T18:37:16Z",
+      "mergedAt": "2023-08-02T18:37:16Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "bca2fb1501641b1f1e510affa4e4513a9c7f8db9"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJCFEHs5aW1kJ",
+      "title": "Update draft-ietf-lamps-cms-kemri.md",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/2",
+      "state": "MERGED",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolve Shepherd issues",
+      "createdAt": "2023-09-14T15:30:50Z",
+      "updatedAt": "2023-09-18T15:27:33Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "f70b6dc8b88058c70637c6eb9b27df6a4bb3b6d7",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "rh-shepherd-issue-resolve",
+      "headRefOid": "fc4a7924bc602b8ddf7481947acda858ec7da8ab",
+      "closedAt": "2023-09-18T15:27:32Z",
+      "mergedAt": "2023-09-18T15:27:32Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "bf27cbad2257ea480343ac5d9be0c2b56b8847fc"
+      },
+      "comments": [
+        {
+          "author": "russhousley",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Can you correct the typo and post it?",
+          "createdAt": "2023-09-16T21:50:15Z",
+          "updatedAt": "2023-09-16T21:50:15Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJCFEHs5hAz8Z",
+          "commit": {
+            "abbreviatedOid": "fc4a792"
+          },
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-14T19:21:43Z",
+          "updatedAt": "2023-09-14T19:25:11Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Small typo - should be for instead of 'fo'",
+              "createdAt": "2023-09-14T19:21:43Z",
+              "updatedAt": "2023-09-14T19:25:11Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOJCFEHs5dMM68",
+      "title": "Resolve comments from the SEC AD review.",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/5",
+      "state": "MERGED",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolve comments from the SEC AD review.  See email on the spasm@ietf.org mail list.",
+      "createdAt": "2023-10-18T21:09:47Z",
+      "updatedAt": "2023-10-21T23:28:48Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "2b88f62293c9b94d76bef09e2cde4b8c895dfe3d",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "rh-SEC-AD-comment-resolve",
+      "headRefOid": "1f3425afd85d3cc1d0e5e24dab416dec189aaebe",
+      "closedAt": "2023-10-21T23:28:48Z",
+      "mergedAt": "2023-10-21T23:28:48Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "1693b23edf8862c6f5a63568c074d3adb3f82896"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJCFEHs5kgTTE",
+          "commit": {
+            "abbreviatedOid": "1f3425a"
+          },
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "The changes look fine to me and I am okay with all of them.  Thanks for making these changes Russ!     Adding KEM in front of all the encapsulate() and decapsulate() names doesn't really seem necessary to me as they are unique to KEM's, but I also think it doesn't hurt having them there.  ",
+          "createdAt": "2023-10-18T21:32:42Z",
+          "updatedAt": "2023-10-18T21:32:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOJCFEHs5dy96J",
+      "title": "Resolve ops-dir review comments",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/6",
+      "state": "OPEN",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolve ops-dir review comments; see email to the spasam@ietf.org mail list.",
+      "createdAt": "2023-10-25T20:53:47Z",
+      "updatedAt": "2023-10-25T23:54:19Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "rh-opsdir-review",
+      "headRefOid": "af79d81225d26dfe46021691a0feb68f46460ea8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "lindadunbar",
+          "authorAssociation": "NONE",
+          "body": "Thank you",
+          "createdAt": "2023-10-25T23:54:19Z",
+          "updatedAt": "2023-10-25T23:54:19Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}
