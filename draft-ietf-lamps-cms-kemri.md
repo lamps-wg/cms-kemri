@@ -18,18 +18,23 @@ kw: Internet-Draft
 date:
 
 author:
-- name: Russ Housley
+-
+  fullname: Russ Housley
   org: Vigil Security, LLC
   abbrev: Vigil Security
   city: Herndon, VA
   country: US
   email: housley@vigilsec.com
-- name: John Gray
+-
+  fullname: John Gray
   org: Entrust
   city: Minneapolis, MN
   country: US
   email: john.gray@entrust.com
-- name: Tomofumi Okubo
+-
+  fullname:
+    :: 大久保　智史
+    ascii: Tomofumi Okubo
   org: DigiCert, Inc.
   abbrev: DigiCert
   city: Fairfax, VA
