@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-12T01:19:21.985000+00:00",
+  "timestamp": "2023-11-14T01:14:45.655400+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -249,7 +249,7 @@
       "labels": [],
       "body": "Resolve ops-dir review comments; see email to the spasam@ietf.org mail list.",
       "createdAt": "2023-10-25T20:53:47Z",
-      "updatedAt": "2023-10-25T23:54:19Z",
+      "updatedAt": "2023-11-13T18:45:01Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
@@ -269,7 +269,21 @@
           "updatedAt": "2023-10-25T23:54:19Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJCFEHs5m_vtN",
+          "commit": {
+            "abbreviatedOid": "af79d81"
+          },
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Changes look good.   Thanks for making the changes.",
+          "createdAt": "2023-11-13T18:45:01Z",
+          "updatedAt": "2023-11-13T18:45:01Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 8,
