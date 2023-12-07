@@ -1485,8 +1485,8 @@ is described in Section 10.1.3 of <span>[<a href="#RFC5652" class="cite xref">RF
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-3-15.1">
           <p id="section-3-15.1.1">encryptedKey is the result of encrypting the CEK or the
-content-authenticated-encryption key with the KEK.  EncryptedKey
-is an OCTET STRING.<a href="#section-3-15.1.1" class="pilcrow">¶</a></p>
+content-authenticated-encryption key <span>[<a href="#RFC5083" class="cite xref">RFC5083</a>]</span> (CAEK) with the KEK.
+EncryptedKey is an OCTET STRING.<a href="#section-3-15.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1575,8 +1575,7 @@ output of the key-derivation function will be exactly this size.<a href="#sectio
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-5-13.1">
           <p id="section-5-13.1.1">OKM is the output keying material with the exact length of L octets.
-The OKM is the KEK that is used to encrypt the CEK or the
-content-authenticated-encryption key.<a href="#section-5-13.1.1" class="pilcrow">¶</a></p>
+The OKM is the KEK that is used to encrypt the CEK or the CAEK.<a href="#section-5-13.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-5-14">An acceptable KDF <span class="bcp14">MUST</span> accept an IKM, L, and info as inputs.  An acceptable
@@ -1788,12 +1787,11 @@ the KEM.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <p id="section-7-5">KEM algorithms do not provide data origin authentication; therefore, when
 a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6">Implementations <span class="bcp14">MUST</span> protect the KEM private key, the KEK, the CEK and the
-content-authenticated-encryption.  Compromise of the KEM private key may
+<p id="section-7-6">Implementations <span class="bcp14">MUST</span> protect the KEM private key, the KEK, the CEK (or the
+CAEK).  Compromise of the KEM private key may
 result in the disclosure of all contents protected with that KEM private key.
-However, compromise of the KEK, the CEK, or the
-content-authenticated-encryption may result in disclosure of the encrypted
-content of a single message.<a href="#section-7-6" class="pilcrow">¶</a></p>
+However, compromise of the KEK, the CEK, or the CAEK may result in disclosure
+of the encrypted content of a single message.<a href="#section-7-6" class="pilcrow">¶</a></p>
 <p id="section-7-7">The KEM produces the IKM input value for the KDF.  This IKM value <span class="bcp14">MUST NOT</span>
 be reused for any other purpose.  Likewise, any random value used by
 the KEM algorithm to produce the shared secret or its encapsulation <span class="bcp14">MUST NOT</span>
@@ -1826,8 +1824,7 @@ protection is provided.<a href="#section-7-9" class="pilcrow">¶</a></p>
 content-authenticated-encryption algorithms are different, the effective
 security is determined by the weaker of the two algorithms.  If, for example,
 the content is encrypted with AES-GCM using a 128-bit
-content-authenticated-encryption key, and the content-authenticated-encryption
-key is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
+CAEK, and the CAEK is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
 most 128 bits of protection is provided.<a href="#section-7-10" class="pilcrow">¶</a></p>
 <p id="section-7-11">If the cipher and key sizes used for the key-encryption and the
 message-authentication algorithms are different, the effective security is
