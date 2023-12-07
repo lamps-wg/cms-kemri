@@ -549,7 +549,7 @@ KEM algorithms do not provide data origin authentication; therefore, when
 a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.
 
-Implementations MUST protect the KEM private key, the KEK, the CEK (or the 
+Implementations MUST protect the KEM private key, the KEK, the CEK (or the
 CAEK).  Compromise of the KEM private key may
 result in the disclosure of all contents protected with that KEM private key.
 However, compromise of the KEK, the CEK, or the CAEK may result in disclosure
