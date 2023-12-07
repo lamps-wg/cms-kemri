@@ -162,7 +162,7 @@ with the enveloped-data content type will be used in this overview.
 
 The originator randomly generates the content-encryption key (CEK), and then
 all recipients obtain that key as an encrypted object within the KEMRecipientInfo
-encryptedKey ASN.1 structure explained in section {{kemri}}.  All recipients use
+encryptedKey field explained in {{kemri}}.  All recipients use
 the originator-generated symmetric key to decrypt the CMS message.
 
 A KEM algorithm and a key-derivation function are used to securely
