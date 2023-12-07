@@ -287,8 +287,8 @@ CEK.  The KeyEncryptionAlgorithmIdentifier
 is described in Section 10.1.3 of {{RFC5652}}.
 
 > encryptedKey is the result of encrypting the CEK or the
-content-authenticated-encryption key with the KEK.  EncryptedKey
-is an OCTET STRING.
+content-authenticated-encryption key {{RFC5083}} (CAEK) with the KEK.
+EncryptedKey is an OCTET STRING.
 
 # KEM Algorithm Identifier {#kemalg}
 
@@ -350,8 +350,7 @@ output of the key-derivation function will be exactly this size.
 The KDF output is:
 
 > OKM is the output keying material with the exact length of L octets.
-The OKM is the KEK that is used to encrypt the CEK or the
-content-authenticated-encryption key.
+The OKM is the KEK that is used to encrypt the CEK or the CAEK.
 
 An acceptable KDF MUST accept an IKM, L, and info as inputs.  An acceptable
 KDF MAY also accept salt, which is carried as a parameter to the
@@ -550,12 +549,11 @@ KEM algorithms do not provide data origin authentication; therefore, when
 a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.
 
-Implementations MUST protect the KEM private key, the KEK, the CEK and the
-content-authenticated-encryption.  Compromise of the KEM private key may
+Implementations MUST protect the KEM private key, the KEK, the CEK (or the 
+CAEK).  Compromise of the KEM private key may
 result in the disclosure of all contents protected with that KEM private key.
-However, compromise of the KEK, the CEK, or the
-content-authenticated-encryption may result in disclosure of the encrypted
-content of a single message.
+However, compromise of the KEK, the CEK, or the CAEK may result in disclosure
+of the encrypted content of a single message.
 
 The KEM produces the IKM input value for the KDF.  This IKM value MUST NOT
 be reused for any other purpose.  Likewise, any random value used by
@@ -592,8 +590,7 @@ If the cipher and key sizes used for the key-encryption and the
 content-authenticated-encryption algorithms are different, the effective
 security is determined by the weaker of the two algorithms.  If, for example,
 the content is encrypted with AES-GCM using a 128-bit
-content-authenticated-encryption key, and the content-authenticated-encryption
-key is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
+CAEK, and the CAEK is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
 most 128 bits of protection is provided.
 
 If the cipher and key sizes used for the key-encryption and the
