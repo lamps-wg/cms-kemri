@@ -172,9 +172,9 @@ Table of Contents
 
    The originator randomly generates the content-encryption key (CEK),
    and then all recipients obtain that key as an encrypted object within
-   the KEMRecipientInfo encryptedKey ASN.1 structure explained in
-   section Section 3.  All recipients use the originator-generated
-   symmetric key to decrypt the CMS message.
+   the KEMRecipientInfo encryptedKey field explained in Section 3.  All
+   recipients use the originator-generated symmetric key to decrypt the
+   CMS message.
 
    A KEM algorithm and a key-derivation function are used to securely
    establish a pairwise symmetric key-encryption key (KEK), which is

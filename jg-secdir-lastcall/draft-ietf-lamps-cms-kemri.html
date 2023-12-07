@@ -1320,7 +1320,7 @@ content type <span>[<a href="#RFC5083" class="cite xref">RFC5083</a>]</span>.  F
 with the enveloped-data content type will be used in this overview.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The originator randomly generates the content-encryption key (CEK), and then
 all recipients obtain that key as an encrypted object within the KEMRecipientInfo
-encryptedKey ASN.1 structure explained in section <a href="#kemri" class="auto internal xref">Section 3</a>.  All recipients use
+encryptedKey field explained in <a href="#kemri" class="auto internal xref">Section 3</a>.  All recipients use
 the originator-generated symmetric key to decrypt the CMS message.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">A KEM algorithm and a key-derivation function are used to securely
 establish a pairwise symmetric key-encryption key (KEK), which is used to encrypt
