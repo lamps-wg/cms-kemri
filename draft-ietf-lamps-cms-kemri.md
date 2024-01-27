@@ -100,7 +100,7 @@ content type.
 A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
 public key.  The recipient's private key is needed to recover the random
-keying material, which is then treated as a pairwise shared secret (ss) 
+keying material, which is then treated as a pairwise shared secret (ss)
 between the originator and recipient.
 
 The KEMRecipientInfo structure defined in this document uses the pairwise
