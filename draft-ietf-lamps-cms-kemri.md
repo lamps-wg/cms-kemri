@@ -101,8 +101,21 @@ A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
 public key.  The recipient's private key is needed to recover the random
 keying material, which is then treated as a pairwise shared secret (ss)
-between the originator and recipient.  A KEM algorithm provides three
-functions:
+between the originator and recipient.
+
+The KEMRecipientInfo structure defined in this document uses the pairwise
+shared secret as an input to a key derivation function (KDF) to produce a
+pairwise key-encryption key (KEK).  Then, the pairwise KEK is used to encrypt a
+content-encryption key (CEK) or a content-authenticated-encryption key (CAEK)
+for that recipient.  All of the recipients recieve the same CEK or CAEK.
+
+In this environment, security depends on three things.  First, the KEM algorithm
+must be secure against adaptive chosen ciphertext attacks.  Second, the
+key-encryption algorithm must provide confidentiality and integrity protection.  Third,
+the choices of the KDF and the key-encryption algorithm need to provide the same
+level of security as the KEM algorithm.
+
+A KEM algorithm provides three functions:
 
 * KeyGen() -> (pk, sk):
 
