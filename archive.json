@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-25T01:19:54.792675+00:00",
+  "timestamp": "2024-01-28T01:17:12.586777+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -316,25 +316,35 @@
       "id": "PR_kwDOJCFEHs5hdHhH",
       "title": "Jg secdir lastcall",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/9",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "johngray-dev",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I addressed the comments from Brian Weis from the Last Call Review",
       "createdAt": "2023-12-07T19:01:51Z",
-      "updatedAt": "2023-12-07T22:27:03Z",
+      "updatedAt": "2024-01-27T18:59:51Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "jg-secdir-lastcall",
       "headRefOid": "8a9abeb28960103301c78edef3cd568647540958",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-01-27T18:59:51Z",
+      "mergedAt": "2024-01-27T18:59:51Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "c639f7695563d09f2fb91ff485f04241b1f23308"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merging Pull Request 9 first.  Then will merge Pull request 10 on top of it.  ",
+          "createdAt": "2024-01-27T18:59:46Z",
+          "updatedAt": "2024-01-27T18:59:46Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -342,25 +352,35 @@
       "id": "PR_kwDOJCFEHs5k93Nu",
       "title": "Update draft-ietf-lamps-cms-kemri.md",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/10",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "russhousley",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Improve the introduction to capture the KEM algorithm requirements at the start.",
       "createdAt": "2024-01-24T15:32:02Z",
-      "updatedAt": "2024-01-24T15:32:02Z",
+      "updatedAt": "2024-01-27T20:04:44Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
-      "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
+      "baseRefOid": "c639f7695563d09f2fb91ff485f04241b1f23308",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "rh-improve-intro",
-      "headRefOid": "bbf8e5ead69db145d56ad0396dab0621c4b9e6b0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "cef03d8fa3db00273953ded12746b2c380592c06",
+      "closedAt": "2024-01-27T20:04:38Z",
+      "mergedAt": "2024-01-27T20:04:38Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "e9623c8b29ff313d171409382d12c1831ba41b57"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fixed merge conflicts and subsequent whitespace issue.",
+          "createdAt": "2024-01-27T20:04:43Z",
+          "updatedAt": "2024-01-27T20:04:43Z"
+        }
+      ],
       "reviews": []
     }
   ]
