@@ -173,23 +173,23 @@ content type {{RFC5652}}, or the authenticated-enveloped-data
 content type {{RFC5083}}.  For simplicity, the terminology associated
 with the enveloped-data content type will be used in this overview.
 
-The originator randomly generates the content-encryption key (CEK), and then
+The originator randomly generates the CEK (or the CAEK), and then
 all recipients obtain that key as an encrypted object within the KEMRecipientInfo
 encryptedKey field explained in {{kemri}}.  All recipients use
 the originator-generated symmetric key to decrypt the CMS message.
 
 A KEM algorithm and a key-derivation function are used to securely
 establish a pairwise symmetric key-encryption key (KEK), which is used to encrypt
-the originator-generated CEK.
+the originator-generated CEK (or the CAEK).
 
 In advance, each recipient uses the KEM KeyGen() function to create a key pair.
 The recipient will often obtain a certificate {{RFC5280}} that includes the newly
 generated public key.  Whether the public key is certified or not, the newly
 generated public key is made available to potential originators.
 
-The originator establishes the CEK using these steps:
+The originator establishes the CEK (or the CAEK) using these steps:
 
-1. The CEK is generated at random.
+1. The CEK (or the CAEK) is generated at random.
 
 2. For each recipient:
 
@@ -199,17 +199,17 @@ The originator establishes the CEK using these steps:
 
     - The KEK is used to encrypt the CEK for this recipient.
 
-3. The CEK is used to encrypt the content for all recipients.
+3. The CEK (or the CAEK) is used to encrypt the content for all recipients.
 
-The recipient obtains the CEK using these steps:
+The recipient obtains the CEK (or the CAEK) using these steps:
 
 1. The recipient's private key and the ciphertext are used with the KEM Decapsulate() function to obtain a pairwise ss.
 
 2. The key-derivation function is used to derive a pairwise symmetric KEK, from the pairwise ss and other data that is optionally sent in the ukm field.
 
-3. The KEK is used to decrypt the CEK.
+3. The KEK is used to decrypt the CEK (or the CAEK) .
 
-4. The CEK is used to decrypt the content.
+4. The CEK (or the CAEK) is used to decrypt the content.
 
 # KEM Recipient Information {#kemri}
 
