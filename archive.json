@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T01:16:20.094346+00:00",
+  "timestamp": "2024-02-04T01:17:09.825706+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -105,6 +105,22 @@
       "body": "Use the md magic to allow Kanji.",
       "createdAt": "2023-11-08T12:32:56Z",
       "updatedAt": "2023-11-08T12:32:56Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOJCFEHs599ze2",
+      "title": "Merge outstanding issues and comments together",
+      "url": "https://github.com/lamps-wg/cms-kemri/issues/12",
+      "state": "OPEN",
+      "author": "johngray-dev",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is to track merging the following:\r\nhttps://github.com/lamps-wg/cms-kemri/pull/6\r\nhttps://github.com/lamps-wg/cms-kemri/pull/8\r\nhttps://github.com/lamps-wg/cms-kemri/pull/11\r\n\r\nAnd resolve all outstanding Issues reported to date\r\nhttps://github.com/lamps-wg/cms-kemri/issues/7\r\nhttps://github.com/lamps-wg/cms-kemri/issues/3\r\n\r\n\r\n",
+      "createdAt": "2024-02-01T19:54:06Z",
+      "updatedAt": "2024-02-01T19:54:07Z",
       "closedAt": null,
       "comments": []
     }
@@ -381,6 +397,32 @@
           "updatedAt": "2024-01-27T20:04:43Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOJCFEHs5lvaL_",
+      "title": "Add CAEK to s2.",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/11",
+      "state": "OPEN",
+      "author": "seanturner",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-01T18:57:25Z",
+      "updatedAt": "2024-02-01T18:57:25Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "e9623c8b29ff313d171409382d12c1831ba41b57",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "seanturner-s2-caek",
+      "headRefOid": "6f95bc263e36451e71a92e35c3d0176bfd11a7d3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
