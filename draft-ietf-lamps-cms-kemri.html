@@ -1218,16 +1218,17 @@ and decrypt CMS content.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> and the CMS authenticated-enveloped-data content type
 <span>[<a href="#RFC5083" class="cite xref">RFC5083</a>]</span> support both key transport and key agreement algorithms to
 establish the key used to encrypt the content.  In recent years,
-cryptographers have be specifying Key Encapsulation Mechanism (KEM)
+cryptographers have been specifying Key Encapsulation Mechanism (KEM)
 algorithms, including quantum-secure KEM algorithms.  This document
 defines conventions for the use of KEM algorithms for the CMS
 enveloped-data content type and the CMS authenticated-enveloped-data
 content type.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
-public key.  The recipient's private key is needed to recover the random
-keying material, which is then treated as a pairwise shared secret (ss)
-between the originator and recipient.<a href="#section-1-2" class="pilcrow">¶</a></p>
+public key.  This means that the originator and the recipients do not need
+to be online at the same time.  The recipient's private key is needed to
+recover the random keying material, which is then treated as a pairwise
+shared secret (ss) between the originator and recipient.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">The KEMRecipientInfo structure defined in this document uses the pairwise
 shared secret as an input to a key derivation function (KDF) to produce a
 pairwise key-encryption key (KEK).  Then, the pairwise KEK is used to encrypt a
@@ -1312,9 +1313,8 @@ This approach is also forgiving when an incorrect version number is used
 by the originator.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <p id="section-1.3-2">Whenever the structure is updated, a higher version number will be
 assigned.  However, to ensure maximum interoperability, the higher
-version number is only used when the new syntax feature is employed.
-That is, the lowest version number that supports the generated syntax is
-used.<a href="#section-1.3-2" class="pilcrow">¶</a></p>
+version number is only used when the new syntax feature is employed.  That
+is, the lowest version number that supports the generated syntax is used.<a href="#section-1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1590,8 +1590,8 @@ The OKM is the KEK that is used to encrypt the CEK or the CAEK.<a href="#section
 </li>
       </ul>
 <p id="section-5-14">An acceptable KDF <span class="bcp14">MUST</span> accept an IKM, L, and info as inputs.  An acceptable
-KDF <span class="bcp14">MAY</span> also accept salt, which is carried as a parameter to the
-KeyDerivationAlgorithmIdentifier if present.  All of these
+KDF <span class="bcp14">MAY</span> also accept a salt input value, which is carried as a parameter to
+the KeyDerivationAlgorithmIdentifier if present.  All of these
 inputs <span class="bcp14">MUST</span> influence the output of the KDF.<a href="#section-5-14" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1885,8 +1885,9 @@ for the new OID should be set to "id-mod-cms-kemri-2023".<a href="#section-8-3" 
 Hendrik Brockhaus,
 Jonathan Hammell,
 Mike Jenkins,
-David von Oheimb, and
-Francois Rousseau
+David von Oheimb,
+Francois Rousseau, and
+Linda Dunbar
 for their careful review and thoughtful comments.<a href="#section-9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
