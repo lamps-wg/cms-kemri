@@ -96,7 +96,7 @@ The Cryptographic Message Syntax (CMS) enveloped-data content type
 {{RFC5652}} and the CMS authenticated-enveloped-data content type
 {{RFC5083}} support both key transport and key agreement algorithms to
 establish the key used to encrypt the content.  In recent years,
-cryptographers have be specifying Key Encapsulation Mechanism (KEM)
+cryptographers have been specifying Key Encapsulation Mechanism (KEM)
 algorithms, including quantum-secure KEM algorithms.  This document
 defines conventions for the use of KEM algorithms for the CMS
 enveloped-data content type and the CMS authenticated-enveloped-data
@@ -104,9 +104,10 @@ content type.
 
 A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
-public key.  The recipient's private key is needed to recover the random
-keying material, which is then treated as a pairwise shared secret (ss)
-between the originator and recipient.
+public key.  This means that the originator and the recipients do not need
+to be online at the same time.  The recipient's private key is needed to
+recover the random keying material, which is then treated as a pairwise
+shared secret (ss) between the originator and recipient.
 
 The KEMRecipientInfo structure defined in this document uses the pairwise
 shared secret as an input to a key derivation function (KDF) to produce a
@@ -166,9 +167,8 @@ by the originator.
 
 Whenever the structure is updated, a higher version number will be
 assigned.  However, to ensure maximum interoperability, the higher
-version number is only used when the new syntax feature is employed.
-That is, the lowest version number that supports the generated syntax is
-used.
+version number is only used when the new syntax feature is employed.  That
+is, the lowest version number that supports the generated syntax is used.
 
 # KEM Processing Overview
 
@@ -371,8 +371,8 @@ The KDF output is:
 The OKM is the KEK that is used to encrypt the CEK or the CAEK.
 
 An acceptable KDF MUST accept an IKM, L, and info as inputs.  An acceptable
-KDF MAY also accept salt, which is carried as a parameter to the
-KeyDerivationAlgorithmIdentifier if present.  All of these
+KDF MAY also accept a salt input value, which is carried as a parameter to
+the KeyDerivationAlgorithmIdentifier if present.  All of these
 inputs MUST influence the output of the KDF.
 
 # ASN.1 Modules {#asn1-mod}
@@ -657,8 +657,9 @@ Our thanks to
 Hendrik Brockhaus,
 Jonathan Hammell,
 Mike Jenkins,
-David von Oheimb, and
-Francois Rousseau
+David von Oheimb,
+Francois Rousseau, and
+Linda Dunbar
 for their careful review and thoughtful comments.
 
 --- back
