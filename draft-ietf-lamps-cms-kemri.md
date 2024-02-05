@@ -95,9 +95,9 @@ and decrypt CMS content.
 The Cryptographic Message Syntax (CMS) enveloped-data content type
 {{RFC5652}} and the CMS authenticated-enveloped-data content type
 {{RFC5083}} support both key transport and key agreement algorithms to
-establish the key used to encrypt the content.  In recent years,
-cryptographers have been specifying Key Encapsulation Mechanism (KEM)
-algorithms, including quantum-secure KEM algorithms.  This document
+establish the key used to encrypt and decrypt the content.  In recent
+years, cryptographers have been specifying Key Encapsulation Mechanism
+(KEM) algorithms, including quantum-secure KEM algorithms.  This document
 defines conventions for the use of KEM algorithms for the CMS
 enveloped-data content type and the CMS authenticated-enveloped-data
 content type.
