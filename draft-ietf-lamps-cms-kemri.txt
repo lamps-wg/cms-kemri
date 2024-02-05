@@ -6,9 +6,9 @@ LAMPS Working Group                                           R. Housley
 Internet-Draft                                            Vigil Security
 Updates: 5652 (if approved)                                      J. Gray
 Intended status: Standards Track                                 Entrust
-Expires: 30 July 2024                                           T. Okubo
+Expires: 8 August 2024                           大久保　智史 (T. Okubo)
                                                                 DigiCert
-                                                         27 January 2024
+                                                         5 February 2024
 
 
 Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 July 2024.
+   This Internet-Draft will expire on 8 August 2024.
 
 Copyright Notice
 
@@ -779,3 +779,10 @@ Authors' Addresses
    Fairfax, VA,
    United States of America
    Email: tomofumi.okubo+ietf@gmail.com
+
+   Additional contact information:
+
+      大久保　智史
+      DigiCert, Inc.
+      Fairfax, VA,
+      United States of America
