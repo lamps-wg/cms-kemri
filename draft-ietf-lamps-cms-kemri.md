@@ -18,18 +18,23 @@ kw: Internet-Draft
 date:
 
 author:
-- name: Russ Housley
+-
+  fullname: Russ Housley
   org: Vigil Security, LLC
   abbrev: Vigil Security
   city: Herndon, VA
   country: US
   email: housley@vigilsec.com
-- name: John Gray
+-
+  fullname: John Gray
   org: Entrust
   city: Minneapolis, MN
   country: US
   email: john.gray@entrust.com
-- name: Tomofumi Okubo
+-
+  fullname:
+    :: 大久保　智史
+    ascii: Tomofumi Okubo
   org: DigiCert, Inc.
   abbrev: DigiCert
   city: Fairfax, VA
@@ -101,9 +106,22 @@ A KEM algorithm is a one-pass (store-and-forward) mechanism for
 transporting random keying material to a recipient using the recipient's
 public key.  This means that the originator and the recipients do not need
 to be online at the same time.  The recipient's private key is needed to
-recover the random keying material, which is then treated as a pairwise shared
-secret between the originator and recipient.  A KEM algorithm provides three
-functions:
+recover the random keying material, which is then treated as a pairwise
+shared secret (ss) between the originator and recipient.
+
+The KEMRecipientInfo structure defined in this document uses the pairwise
+shared secret as an input to a key derivation function (KDF) to produce a
+pairwise key-encryption key (KEK).  Then, the pairwise KEK is used to encrypt a
+content-encryption key (CEK) or a content-authenticated-encryption key (CAEK)
+for that recipient.  All of the recipients recieve the same CEK or CAEK.
+
+In this environment, security depends on three things.  First, the KEM algorithm
+must be secure against adaptive chosen ciphertext attacks.  Second, the
+key-encryption algorithm must provide confidentiality and integrity protection.  Third,
+the choices of the KDF and the key-encryption algorithm need to provide the same
+level of security as the KEM algorithm.
+
+A KEM algorithm provides three functions:
 
 * KeyGen() -> (pk, sk):
 
@@ -137,13 +155,15 @@ Encoding Rules (BER) and the Distinguished Encoding Rules (DER) {{X.690}}.
 
 ## CMS Version Numbers
 
-As described in {{Section 1.3 of RFC5652}}, the major data structures include a
-version number as the first item in the data structure.  The version number is
-intended to avoid ASN.1 decode errors.  Some implementations do not check the
-version number prior to attempting a decode, and then if a decode error
-occurs, the version number is checked as part of the error handling routine.  This
-is a reasonable approach; it places error processing outside of the fast path.  This
-approach is also forgiving when an incorrect version number is used by the originator.
+As described in {{Section 1.3 of RFC5652}}, the major data structures
+include a version number as the first item in
+the data structure.  The version number is intended to avoid ASN.1 decode
+errors.  Some implementations do not check the version number prior to
+attempting a decode, and then if a decode error occurs, the version
+number is checked as part of the error handling routine.  This is a
+reasonable approach; it places error processing outside of the fast path.
+This approach is also forgiving when an incorrect version number is used
+by the originator.
 
 Whenever the structure is updated, a higher version number will be
 assigned.  However, to ensure maximum interoperability, the higher
@@ -158,40 +178,41 @@ content type {{RFC5652}}, or the authenticated-enveloped-data
 content type {{RFC5083}}.  For simplicity, the terminology associated
 with the enveloped-data content type will be used in this overview.
 
-The originator randomly generates the content-encryption key, and then
-all recipients obtain that key.  All recipients use the originator-generated
-symmetric key to decrypt the CMS message.
+The originator randomly generates the content-encryption key (CEK), and then
+all recipients obtain that key as an encrypted object within the KEMRecipientInfo
+encryptedKey field explained in {{kemri}}.  All recipients use
+the originator-generated symmetric key to decrypt the CMS message.
 
 A KEM algorithm and a key-derivation function are used to securely
-establish a pairwise symmetric key-encryption key, which is used to encrypt
-the originator-generated content-encryption key.
+establish a pairwise symmetric key-encryption key (KEK), which is used to encrypt
+the originator-generated CEK.
 
-In advance, each recipient uses the KEM KeyGen() function to create a key pair.  The
-recipient will often obtain a certificate {{RFC5280}} that includes the newly
+In advance, each recipient uses the KEM KeyGen() function to create a key pair.
+The recipient will often obtain a certificate {{RFC5280}} that includes the newly
 generated public key.  Whether the public key is certified or not, the newly
 generated public key is made available to potential originators.
 
-The originator establishes the content-encryption key using these steps:
+The originator establishes the CEK using these steps:
 
-1. The content-encryption key, called CEK, is generated at random.
+1. The CEK is generated at random.
 
 2. For each recipient:
 
-    - The recipient's public key is used with the KEM Encapsulate() function to obtain a pairwise shared secret and the ciphertext for the recipient.
+    - The recipient's public key is used with the KEM Encapsulate() function to obtain a pairwise shared secret (ss) and the ciphertext for the recipient.
 
-    - The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
+    - The key-derivation function is used to derive a pairwise symmetric KEK, from the pairwise ss and other data that is optionally sent in the ukm field.
 
     - The KEK is used to encrypt the CEK for this recipient.
 
 3. The CEK is used to encrypt the content for all recipients.
 
-The recipient obtains the content-encryption key using these steps:
+The recipient obtains the CEK using these steps:
 
-1. The recipient's private key and the ciphertext are used with the KEM Decapsulate() function to obtain a pairwise shared secret.
+1. The recipient's private key and the ciphertext are used with the KEM Decapsulate() function to obtain a pairwise ss.
 
-2. The key-derivation function is used to derive a pairwise key-encryption key, called KEK, from the pairwise shared secret and other data that is sent in the clear.
+2. The key-derivation function is used to derive a pairwise symmetric KEK, from the pairwise ss and other data that is optionally sent in the ukm field.
 
-3. The KEK is used to decrypt the content-encryption key, called CEK.
+3. The KEK is used to decrypt the CEK.
 
 4. The CEK is used to decrypt the content.
 
@@ -233,7 +254,7 @@ The fields of the KEMRecipientInfo type have the following meanings:
 CMSVersion type is described in Section 10.2.5 of {{RFC5652}}.
 
 > rid specifies the recipient's certificate or key that was used by
-the originator to with the KEM Encapsulate() function.  The
+the originator with the KEM Encapsulate() function.  The
 RecipientIdentifier provides two alternatives for specifying the
 recipient's certificate {{RFC5280}}, and thereby the recipient's public
 key.  The recipient's certificate MUST contain a KEM public key.  Therefore,
@@ -258,10 +279,10 @@ by the originator.  The KEMAlgorithmIdentifier is described in {{kemalg}}.
 this recipient.
 
 > kdf identifies the key-derivation algorithm, and any associated parameters,
-used by the originator to generate the key-encryption key.  The
+used by the originator to generate the KEK.  The
 KeyDerivationAlgorithmIdentifier is described in Section 10.1.6 of {{RFC5652}}.
 
-> kekLength is the size of the key-encryption key in octets.  This value is one
+> kekLength is the size of the KEK in octets.  This value is one
 of the inputs to the key-derivation function.  The upper bound on the integer
 value is provided to make it clear to implementers that support for very
 large integer values is not needed.  Implementations MUST confirm that
@@ -280,19 +301,19 @@ ukm described in Section 10.2.6 of {{RFC5652}}; it is not limited to being
 used with key agreement algorithms.
 
 > wrap identifies a key-encryption algorithm used to encrypt the
-content-encryption key.  The KeyEncryptionAlgorithmIdentifier
+CEK.  The KeyEncryptionAlgorithmIdentifier
 is described in Section 10.1.3 of {{RFC5652}}.
 
-> encryptedKey is the result of encrypting the content-encryption
-key or the content-authenticated-encryption key with the
-key-encryption key.  EncryptedKey is an OCTET STRING.
+> encryptedKey is the result of encrypting the CEK or the
+content-authenticated-encryption key {{RFC5083}} (CAEK) with the KEK.
+EncryptedKey is an OCTET STRING.
 
 # KEM Algorithm Identifier {#kemalg}
 
 The KEMAlgorithmIdentifier type identifies a KEM algorithm used to
-establish a pairwise shared secret.  The details of establishment depend on
+establish a pairwise ss.  The details of establishment depend on
 the KEM algorithm used.  A Key derivation algorithm is used to transform
-the pairwise shared secret value into a key-encryption key.
+the pairwise ss value into a KEK.
 
 ~~~
   KEMAlgorithmIdentifier ::= AlgorithmIdentifier{ KEM-ALGORITHM, {...} }
@@ -301,7 +322,7 @@ the pairwise shared secret value into a key-encryption key.
 # Key Derivation {#kdf}
 
 This section describes the conventions of using the KDF to compute the
-key-encryption key for KEMRecipientInfo.  For simplicity, the
+KEK for KEMRecipientInfo.  For simplicity, the
 terminology used in the HKDF specification {{RFC5869}} is used here.
 
 Many KDFs internally employ a one-way hash function.  When this is
@@ -339,7 +360,7 @@ The CMSORIforKEMOtherInfo structure contains:
 > wrap identifies a key-encryption algorithm; the output of the
 key-derivation function will be used as a key for this algorithm.
 
-> kekLength is the length of the key-encryption key in octets; the
+> kekLength is the length of the KEK in octets; the
 output of the key-derivation function will be exactly this size.
 
 > ukm is optional user keying material; see {{kemri}}.
@@ -347,8 +368,7 @@ output of the key-derivation function will be exactly this size.
 The KDF output is:
 
 > OKM is the output keying material with the exact length of L octets.
-The OKM is the key-encryption key that is used to encrypt the
-content-encryption key or the content-authenticated-encryption key.
+The OKM is the KEK that is used to encrypt the CEK or the CAEK.
 
 An acceptable KDF MUST accept an IKM, L, and info as inputs.  An acceptable
 KDF MAY also accept a salt input value, which is carried as a parameter to
@@ -538,21 +558,20 @@ transform {{HHK}}.
 The KDF SHOULD offer at least the security level of the KEM.
 
 The choice of the key-encryption algorithm and the size of the
-key-encryption key SHOULD be made based on the security level
+KEK SHOULD be made based on the security level
 provided by the KEM. The key-encryption algorithm and the
-key-encryption key SHOULD at least have the security level of
+KEK SHOULD at least have the security level of
 the KEM.
 
 KEM algorithms do not provide data origin authentication; therefore, when
 a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.
 
-Implementations MUST protect the KEM private key, the key-encryption key, the
-content-encryption key and the content-authenticated-encryption.  Compromise
-of the KEM private key may result in the disclosure of all contents protected
-with that KEM private key.  However, compromise of the key-encryption key, the
-content-encryption key, or the content-authenticated-encryption may result in
-disclosure of the encrypted content of a single message.
+Implementations MUST protect the KEM private key, the KEK, the CEK (or the
+CAEK).  Compromise of the KEM private key may
+result in the disclosure of all contents protected with that KEM private key.
+However, compromise of the KEK, the CEK, or the CAEK may result in disclosure
+of the encrypted content of a single message.
 
 The KEM produces the IKM input value for the KDF.  This IKM value MUST NOT
 be reused for any other purpose.  Likewise, any random value used by
@@ -566,7 +585,7 @@ the KEM shared secret, after constructing the entry in the KEMRecipientInfo
 structure for the corresponding recipient.  Similarly, the recipient MUST
 discard the KEM shared secret, including any random value used by the KEM
 algorithm to produce the KEM shared secret, after constructing the
-key-encryption key from the KEMRecipientInfo structure.
+KEK from the KEMRecipientInfo structure.
 
 Implementations MUST randomly generate content-encryption keys,
 content-authenticated-encryption keys, and message-authentication keys.
@@ -581,16 +600,15 @@ numbers is difficult.  {{RFC4086}} offers important guidance in this area.
 If the cipher and key sizes used for the key-encryption and the
 content-encryption algorithms are different, the effective security is
 determined by the weaker of the two algorithms.  If, for example, the
-content is encrypted with AES-CBC using a 128-bit content-encryption key,
-and the content-encryption key is wrapped with AES-KEYWRAP using a 256-bit
-key-encryption key, then at most 128 bits of protection is provided.
+content is encrypted with AES-CBC using a 128-bit CEK, and the CEK is
+wrapped with AES-KEYWRAP using a 256-bit KEK, then at most 128 bits of
+protection is provided.
 
 If the cipher and key sizes used for the key-encryption and the
 content-authenticated-encryption algorithms are different, the effective
 security is determined by the weaker of the two algorithms.  If, for example,
 the content is encrypted with AES-GCM using a 128-bit
-content-authenticated-encryption key, and the content-authenticated-encryption
-key is wrapped with AES-KEYWRAP using a 192-bit key-encryption key, then at
+CAEK, and the CAEK is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
 most 128 bits of protection is provided.
 
 If the cipher and key sizes used for the key-encryption and the
@@ -598,7 +616,7 @@ message-authentication algorithms are different, the effective security is
 determined by the weaker of the two algorithms.  If, for example, the
 content is authenticated with HMAC-SHA256 using a 512-bit
 message-authentication key, and the message-authentication key is wrapped
-with AES-KEYWRAP using a 256-bit key-encryption key, then at most 256 bits of
+with AES-KEYWRAP using a 256-bit KEK, then at most 256 bits of
 protection is provided.
 
 Implementers should be aware that cryptographic algorithms, including KEM
