@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-04T01:17:09.825706+00:00",
+  "timestamp": "2024-02-06T01:12:09.429269+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -55,16 +55,24 @@
       "id": "I_kwDOJCFEHs5xeoX8",
       "title": "Suggestion from Fran\u00e7ois",
       "url": "https://github.com/lamps-wg/cms-kemri/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "russhousley",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The first sentence of the section 1 should read:\r\n\r\n\u2026[RFC5083] support both key transport and key agreement algorithms to establish the key used to encrypt and decrypt the content.",
       "createdAt": "2023-09-19T23:31:09Z",
-      "updatedAt": "2023-09-19T23:31:09Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-05T15:20:30Z",
+      "closedAt": "2024-02-05T15:20:30Z",
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved in https://github.com/lamps-wg/cms-kemri/pull/13\r\n",
+          "createdAt": "2024-02-05T15:20:30Z",
+          "updatedAt": "2024-02-05T15:20:30Z"
+        }
+      ]
     },
     {
       "number": 4,
@@ -73,7 +81,7 @@
       "url": "https://github.com/lamps-wg/cms-kemri/issues/4",
       "state": "CLOSED",
       "author": "seanturner",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [
         "russhousley"
       ],
@@ -97,15 +105,15 @@
       "id": "I_kwDOJCFEHs52Ocs9",
       "title": "Use Kanji",
       "url": "https://github.com/lamps-wg/cms-kemri/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "seanturner",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Use the md magic to allow Kanji.",
       "createdAt": "2023-11-08T12:32:56Z",
-      "updatedAt": "2023-11-08T12:32:56Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-05T14:48:46Z",
+      "closedAt": "2024-02-05T14:48:46Z",
       "comments": []
     },
     {
@@ -113,16 +121,31 @@
       "id": "I_kwDOJCFEHs599ze2",
       "title": "Merge outstanding issues and comments together",
       "url": "https://github.com/lamps-wg/cms-kemri/issues/12",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "johngray-dev",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "This is to track merging the following:\r\nhttps://github.com/lamps-wg/cms-kemri/pull/6\r\nhttps://github.com/lamps-wg/cms-kemri/pull/8\r\nhttps://github.com/lamps-wg/cms-kemri/pull/11\r\n\r\nAnd resolve all outstanding Issues reported to date\r\nhttps://github.com/lamps-wg/cms-kemri/issues/7\r\nhttps://github.com/lamps-wg/cms-kemri/issues/3\r\n\r\n\r\n",
+      "body": "This is to track merging the following:\r\nhttps://github.com/lamps-wg/cms-kemri/pull/6  - Done\r\nhttps://github.com/lamps-wg/cms-kemri/pull/8   - Done\r\nhttps://github.com/lamps-wg/cms-kemri/pull/11 - Done\r\n\r\nAnd resolve all outstanding Issues reported to date\r\nhttps://github.com/lamps-wg/cms-kemri/issues/7  - Done\r\nhttps://github.com/lamps-wg/cms-kemri/issues/3  - Done\r\n\r\nAll Merge conflicts resolved and issued Merged.\r\n\r\n\r\n",
       "createdAt": "2024-02-01T19:54:06Z",
-      "updatedAt": "2024-02-01T19:54:07Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-05T15:22:18Z",
+      "closedAt": "2024-02-05T15:22:03Z",
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Completed merge all these items together",
+          "createdAt": "2024-02-05T15:21:45Z",
+          "updatedAt": "2024-02-05T15:21:45Z"
+        },
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "All issues resolved and Merged.",
+          "createdAt": "2024-02-05T15:22:17Z",
+          "updatedAt": "2024-02-05T15:22:17Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -258,24 +281,26 @@
       "id": "PR_kwDOJCFEHs5dy96J",
       "title": "Resolve ops-dir review comments",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/6",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "russhousley",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Resolve ops-dir review comments; see email to the spasam@ietf.org mail list.",
       "createdAt": "2023-10-25T20:53:47Z",
-      "updatedAt": "2023-11-13T18:45:01Z",
+      "updatedAt": "2024-02-05T15:06:02Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
-      "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
+      "baseRefOid": "ff2a4223be319c9b3b2ffe232e1b6ff456a491a3",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "rh-opsdir-review",
-      "headRefOid": "af79d81225d26dfe46021691a0feb68f46460ea8",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "43c1f8182c8a777d73c5eaf6310ea0f11225e3ca",
+      "closedAt": "2024-02-05T15:06:02Z",
+      "mergedAt": "2024-02-05T15:06:02Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "33f5031409e36a056ba8a593d83856072aa16b73"
+      },
       "comments": [
         {
           "author": "lindadunbar",
@@ -283,6 +308,13 @@
           "body": "Thank you",
           "createdAt": "2023-10-25T23:54:19Z",
           "updatedAt": "2023-10-25T23:54:19Z"
+        },
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved the Merge conflict.   It essentially amounted to adding the following line of text:\r\n\r\n\"This means that the originator and the recipients do not need\r\nto be online at the same time.\" as part of the introduction",
+          "createdAt": "2024-02-05T15:05:57Z",
+          "updatedAt": "2024-02-05T15:05:57Z"
         }
       ],
       "reviews": [
@@ -306,25 +338,35 @@
       "id": "PR_kwDOJCFEHs5e7Dsb",
       "title": "Use Kanji",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/8",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "seanturner",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #7.",
       "createdAt": "2023-11-08T12:41:33Z",
-      "updatedAt": "2023-11-08T12:41:33Z",
+      "updatedAt": "2024-02-05T14:48:45Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "1693b23edf8862c6f5a63568c074d3adb3f82896",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "seanturner-kanji",
       "headRefOid": "3d24bb203d74278afbf6c28fb6d7c7b7beed53f6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-02-05T14:48:45Z",
+      "mergedAt": "2024-02-05T14:48:45Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "ff2a4223be319c9b3b2ffe232e1b6ff456a491a3"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As part of https://github.com/lamps-wg/cms-kemri/issues/12, make sure this pull request gets Merged",
+          "createdAt": "2024-02-05T14:48:42Z",
+          "updatedAt": "2024-02-05T14:48:42Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -404,20 +446,84 @@
       "id": "PR_kwDOJCFEHs5lvaL_",
       "title": "Add CAEK to s2.",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "seanturner",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-02-01T18:57:25Z",
-      "updatedAt": "2024-02-01T18:57:25Z",
+      "updatedAt": "2024-02-05T15:09:55Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "e9623c8b29ff313d171409382d12c1831ba41b57",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "seanturner-s2-caek",
       "headRefOid": "6f95bc263e36451e71a92e35c3d0176bfd11a7d3",
+      "closedAt": "2024-02-05T15:09:55Z",
+      "mergedAt": "2024-02-05T15:09:55Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "41ea47a4ea85f9d3cc6c2c08d63d7c3b623b19f4"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for fixing Sean. ",
+          "createdAt": "2024-02-05T15:09:51Z",
+          "updatedAt": "2024-02-05T15:09:51Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOJCFEHs5mCakH",
+      "title": "Update draft-ietf-lamps-cms-kemri.md",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/13",
+      "state": "MERGED",
+      "author": "johngray-dev",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added Francois suggests to resolve https://github.com/lamps-wg/cms-kemri/issues/3",
+      "createdAt": "2024-02-05T15:19:32Z",
+      "updatedAt": "2024-02-05T15:23:21Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "41ea47a4ea85f9d3cc6c2c08d63d7c3b623b19f4",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "jg-francoisSuggestion",
+      "headRefOid": "29d502a8632f2e6bc538898c1e0064657f21980f",
+      "closedAt": "2024-02-05T15:20:41Z",
+      "mergedAt": "2024-02-05T15:20:41Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "1ae37c69dc5c18a29f7aad7c578feffcd88c05cc"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOJCFEHs5mEsfQ",
+      "title": "Update draft-ietf-lamps-cms-kemri.md",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/14",
+      "state": "OPEN",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolve comments from the second SEC AD review.",
+      "createdAt": "2024-02-05T21:17:35Z",
+      "updatedAt": "2024-02-05T21:17:35Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "1ae37c69dc5c18a29f7aad7c578feffcd88c05cc",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "rh-SEC-AD-2-resolve",
+      "headRefOid": "e2596d4fba7315e41b22b798b212bb9522b2f1c9",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
