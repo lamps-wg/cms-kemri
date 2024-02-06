@@ -44,8 +44,6 @@ author:
 informative:
   RFC4086:
   RFC5869:
-  RFC5911:
-  RFC5912:
   RFC6268:
   FO: DOI.10.1007/s00145-011-9114-1
   HHK: DOI.10.1007/978-3-319-70500-2_12
@@ -54,6 +52,8 @@ normative:
   RFC5083:
   RFC5280:
   RFC5652:
+  RFC5911:
+  RFC5912:
   X.680:
     target: https://www.itu.int/rec/T-REC-X.680
     title: >
@@ -86,11 +86,13 @@ key agreement algorithms.  In recent years, cryptographers have been
 specifying Key Encapsulation Mechanism (KEM) algorithms, including
 quantum-secure KEM algorithms.  This document defines conventions for
 the use of KEM algorithms by the originator and recipients to encrypt
-and decrypt CMS content.
+and decrypt CMS content.  This document updates RFC 5652.
 
 --- middle
 
 # Introduction {#intro}
+
+This document updates the The Cryptographic Message Syntax (CMS) {{RFC5652}}.
 
 The Cryptographic Message Syntax (CMS) enveloped-data content type
 {{RFC5652}} and the CMS authenticated-enveloped-data content type
