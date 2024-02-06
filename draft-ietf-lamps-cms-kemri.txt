@@ -6,9 +6,9 @@ LAMPS Working Group                                           R. Housley
 Internet-Draft                                            Vigil Security
 Updates: 5652 (if approved)                                      J. Gray
 Intended status: Standards Track                                 Entrust
-Expires: 8 August 2024                           大久保　智史 (T. Okubo)
+Expires: 9 August 2024                           大久保　智史 (T. Okubo)
                                                                 DigiCert
-                                                         5 February 2024
+                                                         6 February 2024
 
 
 Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic
@@ -22,7 +22,7 @@ Abstract
    specifying Key Encapsulation Mechanism (KEM) algorithms, including
    quantum-secure KEM algorithms.  This document defines conventions for
    the use of KEM algorithms by the originator and recipients to encrypt
-   and decrypt CMS content.
+   and decrypt CMS content.  This document updates RFC 5652.
 
 Discussion Venues
 
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2024.
+   This Internet-Draft will expire on 9 August 2024.
 
 Copyright Notice
 
@@ -89,6 +89,9 @@ Table of Contents
    Authors' Addresses
 
 1.  Introduction
+
+   This document updates the The Cryptographic Message Syntax (CMS)
+   [RFC5652].
 
    The Cryptographic Message Syntax (CMS) enveloped-data content type
    [RFC5652] and the CMS authenticated-enveloped-data content type
@@ -704,6 +707,16 @@ Normative References
               RFC 5652, DOI 10.17487/RFC5652, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5652>.
 
+   [RFC5911]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for
+              Cryptographic Message Syntax (CMS) and S/MIME", RFC 5911,
+              DOI 10.17487/RFC5911, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5911>.
+
+   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
+              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
+              DOI 10.17487/RFC5912, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5912>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -744,16 +757,6 @@ Informative References
               Key Derivation Function (HKDF)", RFC 5869,
               DOI 10.17487/RFC5869, May 2010,
               <https://www.rfc-editor.org/rfc/rfc5869>.
-
-   [RFC5911]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for
-              Cryptographic Message Syntax (CMS) and S/MIME", RFC 5911,
-              DOI 10.17487/RFC5911, June 2010,
-              <https://www.rfc-editor.org/rfc/rfc5911>.
-
-   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
-              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
-              DOI 10.17487/RFC5912, June 2010,
-              <https://www.rfc-editor.org/rfc/rfc5912>.
 
    [RFC6268]  Schaad, J. and S. Turner, "Additional New ASN.1 Modules
               for the Cryptographic Message Syntax (CMS) and the Public
