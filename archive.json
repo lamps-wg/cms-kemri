@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T01:12:09.429269+00:00",
+  "timestamp": "2024-02-08T01:11:03.967438+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -510,25 +510,35 @@
       "id": "PR_kwDOJCFEHs5mEsfQ",
       "title": "Update draft-ietf-lamps-cms-kemri.md",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/14",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "russhousley",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Resolve comments from the second SEC AD review.",
       "createdAt": "2024-02-05T21:17:35Z",
-      "updatedAt": "2024-02-05T21:17:35Z",
+      "updatedAt": "2024-02-06T18:46:01Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "1ae37c69dc5c18a29f7aad7c578feffcd88c05cc",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "rh-SEC-AD-2-resolve",
       "headRefOid": "e2596d4fba7315e41b22b798b212bb9522b2f1c9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-02-06T18:46:01Z",
+      "mergedAt": "2024-02-06T18:46:01Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "5dfd84138c54a2180c845baa410b21870efab110"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This covers the SEC-AD-2 review comments.  \r\n\r\nReviewer: Sean Turner\r\nReview result: Ready with Nits\r\n\r\nI-D Nits complains that the introduction and abstract should indicate that this\r\nI-D updates RFC 5652.\r\n",
+          "createdAt": "2024-02-06T18:45:57Z",
+          "updatedAt": "2024-02-06T18:45:57Z"
+        }
+      ],
       "reviews": []
     }
   ]
