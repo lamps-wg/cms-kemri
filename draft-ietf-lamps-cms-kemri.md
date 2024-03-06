@@ -292,6 +292,7 @@ the value provided is consistent with the key-encryption algorithm
 identified in the wrap field below.
 
 > ukm is optional user keying material.  When the ukm value is provided,
+it must contain at least one octet, and
 it is used as part of the info structure described in {{kdf}} to
 provide a context input to the key-derivation function.  For example, the
 ukm value could include a nonce, application-specific context information,
