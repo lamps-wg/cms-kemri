@@ -6,9 +6,9 @@ LAMPS Working Group                                           R. Housley
 Internet-Draft                                            Vigil Security
 Updates: 5652 (if approved)                                      J. Gray
 Intended status: Standards Track                                 Entrust
-Expires: 8 August 2024                           大久保　智史 (T. Okubo)
+Expires: 7 September 2024                        大久保　智史 (T. Okubo)
                                                                 DigiCert
-                                                         5 February 2024
+                                                            6 March 2024
 
 
 Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic
@@ -22,7 +22,7 @@ Abstract
    specifying Key Encapsulation Mechanism (KEM) algorithms, including
    quantum-secure KEM algorithms.  This document defines conventions for
    the use of KEM algorithms by the originator and recipients to encrypt
-   and decrypt CMS content.
+   and decrypt CMS content.  This document updates RFC 5652.
 
 Discussion Venues
 
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2024.
+   This Internet-Draft will expire on 7 September 2024.
 
 Copyright Notice
 
@@ -90,15 +90,18 @@ Table of Contents
 
 1.  Introduction
 
+   This document updates the The Cryptographic Message Syntax (CMS)
+   [RFC5652].
+
    The Cryptographic Message Syntax (CMS) enveloped-data content type
    [RFC5652] and the CMS authenticated-enveloped-data content type
    [RFC5083] support both key transport and key agreement algorithms to
-   establish the key used to encrypt the content.  In recent years,
-   cryptographers have been specifying Key Encapsulation Mechanism (KEM)
-   algorithms, including quantum-secure KEM algorithms.  This document
-   defines conventions for the use of KEM algorithms for the CMS
-   enveloped-data content type and the CMS authenticated-enveloped-data
-   content type.
+   establish the key used to encrypt and decrypt the content.  In recent
+   years, cryptographers have been specifying Key Encapsulation
+   Mechanism (KEM) algorithms, including quantum-secure KEM algorithms.
+   This document defines conventions for the use of KEM algorithms for
+   the CMS enveloped-data content type and the CMS authenticated-
+   enveloped-data content type.
 
    A KEM algorithm is a one-pass (store-and-forward) mechanism for
    transporting random keying material to a recipient using the
@@ -187,15 +190,15 @@ Table of Contents
    [RFC5083].  For simplicity, the terminology associated with the
    enveloped-data content type will be used in this overview.
 
-   The originator randomly generates the content-encryption key (CEK),
-   and then all recipients obtain that key as an encrypted object within
-   the KEMRecipientInfo encryptedKey field explained in Section 3.  All
+   The originator randomly generates the CEK (or the CAEK), and then all
+   recipients obtain that key as an encrypted object within the
+   KEMRecipientInfo encryptedKey field explained in Section 3.  All
    recipients use the originator-generated symmetric key to decrypt the
    CMS message.
 
    A KEM algorithm and a key-derivation function are used to securely
    establish a pairwise symmetric key-encryption key (KEK), which is
-   used to encrypt the originator-generated CEK.
+   used to encrypt the originator-generated CEK (or the CAEK).
 
    In advance, each recipient uses the KEM KeyGen() function to create a
    key pair.  The recipient will often obtain a certificate [RFC5280]
@@ -203,9 +206,9 @@ Table of Contents
    is certified or not, the newly generated public key is made available
    to potential originators.
 
-   The originator establishes the CEK using these steps:
+   The originator establishes the CEK (or the CAEK) using these steps:
 
-   1.  The CEK is generated at random.
+   1.  The CEK (or the CAEK) is generated at random.
 
    2.  For each recipient:
 
@@ -219,9 +222,10 @@ Table of Contents
 
        *  The KEK is used to encrypt the CEK for this recipient.
 
-   3.  The CEK is used to encrypt the content for all recipients.
+   3.  The CEK (or the CAEK) is used to encrypt the content for all
+       recipients.
 
-   The recipient obtains the CEK using these steps:
+   The recipient obtains the CEK (or the CAEK) using these steps:
 
    1.  The recipient's private key and the ciphertext are used with the
        KEM Decapsulate() function to obtain a pairwise ss.
@@ -230,9 +234,9 @@ Table of Contents
        symmetric KEK, from the pairwise ss and other data that is
        optionally sent in the ukm field.
 
-   3.  The KEK is used to decrypt the CEK.
+   3.  The KEK is used to decrypt the CEK (or the CAEK) .
 
-   4.  The CEK is used to decrypt the content.
+   4.  The CEK (or the CAEK) is used to decrypt the content.
 
 3.  KEM Recipient Information
 
@@ -309,16 +313,17 @@ Table of Contents
       below.
 
       ukm is optional user keying material.  When the ukm value is
-      provided, it is used as part of the info structure described in
-      Section 5 to provide a context input to the key-derivation
-      function.  For example, the ukm value could include a nonce,
-      application-specific context information, or an identifier for the
-      originator.  A KEM algorithm may place requirements on the ukm
-      value.  Implementations that do not support the ukm field SHOULD
-      gracefully discontinue processing when the ukm field is present.
-      Note that this requirement expands the original purpose of the ukm
-      described in Section 10.2.6 of [RFC5652]; it is not limited to
-      being used with key agreement algorithms.
+      provided, it must contain at least one octet, and it is used as
+      part of the info structure described in Section 5 to provide a
+      context input to the key-derivation function.  For example, the
+      ukm value could include a nonce, application-specific context
+      information, or an identifier for the originator.  A KEM algorithm
+      may place requirements on the ukm value.  Implementations that do
+      not support the ukm field SHOULD gracefully discontinue processing
+      when the ukm field is present.  Note that this requirement expands
+      the original purpose of the ukm described in Section 10.2.6 of
+      [RFC5652]; it is not limited to being used with key agreement
+      algorithms.
 
       wrap identifies a key-encryption algorithm used to encrypt the
       CEK.  The KeyEncryptionAlgorithmIdentifier is described in
@@ -703,6 +708,16 @@ Normative References
               RFC 5652, DOI 10.17487/RFC5652, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5652>.
 
+   [RFC5911]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for
+              Cryptographic Message Syntax (CMS) and S/MIME", RFC 5911,
+              DOI 10.17487/RFC5911, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5911>.
+
+   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
+              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
+              DOI 10.17487/RFC5912, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5912>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -743,16 +758,6 @@ Informative References
               Key Derivation Function (HKDF)", RFC 5869,
               DOI 10.17487/RFC5869, May 2010,
               <https://www.rfc-editor.org/rfc/rfc5869>.
-
-   [RFC5911]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for
-              Cryptographic Message Syntax (CMS) and S/MIME", RFC 5911,
-              DOI 10.17487/RFC5911, June 2010,
-              <https://www.rfc-editor.org/rfc/rfc5911>.
-
-   [RFC5912]  Hoffman, P. and J. Schaad, "New ASN.1 Modules for the
-              Public Key Infrastructure Using X.509 (PKIX)", RFC 5912,
-              DOI 10.17487/RFC5912, June 2010,
-              <https://www.rfc-editor.org/rfc/rfc5912>.
 
    [RFC6268]  Schaad, J. and S. Turner, "Additional New ASN.1 Modules
               for the Cryptographic Message Syntax (CMS) and the Public
