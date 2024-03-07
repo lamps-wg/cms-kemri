@@ -6,9 +6,9 @@ LAMPS Working Group                                           R. Housley
 Internet-Draft                                            Vigil Security
 Updates: 5652 (if approved)                                      J. Gray
 Intended status: Standards Track                                 Entrust
-Expires: 9 August 2024                           大久保　智史 (T. Okubo)
+Expires: 8 September 2024                        大久保　智史 (T. Okubo)
                                                                 DigiCert
-                                                         6 February 2024
+                                                            7 March 2024
 
 
 Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2024.
+   This Internet-Draft will expire on 8 September 2024.
 
 Copyright Notice
 
@@ -313,16 +313,17 @@ Table of Contents
       below.
 
       ukm is optional user keying material.  When the ukm value is
-      provided, it is used as part of the info structure described in
-      Section 5 to provide a context input to the key-derivation
-      function.  For example, the ukm value could include a nonce,
-      application-specific context information, or an identifier for the
-      originator.  A KEM algorithm may place requirements on the ukm
-      value.  Implementations that do not support the ukm field SHOULD
-      gracefully discontinue processing when the ukm field is present.
-      Note that this requirement expands the original purpose of the ukm
-      described in Section 10.2.6 of [RFC5652]; it is not limited to
-      being used with key agreement algorithms.
+      provided, it must contain at least one octet, and it is used as
+      part of the info structure described in Section 5 to provide a
+      context input to the key-derivation function.  For example, the
+      ukm value could include a nonce, application-specific context
+      information, or an identifier for the originator.  A KEM algorithm
+      may place requirements on the ukm value.  Implementations that do
+      not support the ukm field SHOULD gracefully discontinue processing
+      when the ukm field is present.  Note that this requirement expands
+      the original purpose of the ukm described in Section 10.2.6 of
+      [RFC5652]; it is not limited to being used with key agreement
+      algorithms.
 
       wrap identifies a key-encryption algorithm used to encrypt the
       CEK.  The KeyEncryptionAlgorithmIdentifier is described in
