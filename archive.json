@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-05T01:11:22.603635+00:00",
+  "timestamp": "2024-03-07T00:59:33.253310+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -539,6 +539,32 @@
           "updatedAt": "2024-02-06T18:45:57Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOJCFEHs5o4hyc",
+      "title": "Update draft-ietf-lamps-cms-kemri.md",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/15",
+      "state": "OPEN",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "UKM must contain at least one octet when it is present.",
+      "createdAt": "2024-03-06T19:58:19Z",
+      "updatedAt": "2024-03-06T19:58:19Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "5dfd84138c54a2180c845baa410b21870efab110",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "rh-sec-ad-review",
+      "headRefOid": "ce8b1a6d6929e50350a551ab2a1b266c76e773f3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
