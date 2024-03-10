@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-07T00:59:33.253310+00:00",
+  "timestamp": "2024-03-10T01:16:18.218920+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -546,25 +546,35 @@
       "id": "PR_kwDOJCFEHs5o4hyc",
       "title": "Update draft-ietf-lamps-cms-kemri.md",
       "url": "https://github.com/lamps-wg/cms-kemri/pull/15",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "russhousley",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "UKM must contain at least one octet when it is present.",
       "createdAt": "2024-03-06T19:58:19Z",
-      "updatedAt": "2024-03-06T19:58:19Z",
+      "updatedAt": "2024-03-07T14:17:45Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "5dfd84138c54a2180c845baa410b21870efab110",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "rh-sec-ad-review",
       "headRefOid": "ce8b1a6d6929e50350a551ab2a1b266c76e773f3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-03-07T14:17:39Z",
+      "mergedAt": "2024-03-07T14:17:39Z",
+      "mergedBy": "johngray-dev",
+      "mergeCommit": {
+        "oid": "3dce0171085a9f93804cbe15926bc1f9e1736619"
+      },
+      "comments": [
+        {
+          "author": "johngray-dev",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looks like a reasonable comment to me.   Merging it now.\r\n",
+          "createdAt": "2024-03-07T14:17:44Z",
+          "updatedAt": "2024-03-07T14:17:44Z"
+        }
+      ],
       "reviews": []
     }
   ]
