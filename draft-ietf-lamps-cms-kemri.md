@@ -1,7 +1,7 @@
 ---
 stand_alone: true
 ipr: trust200902
-docname: draft-ietf-lamps-cms-kemri-latest
+docname: rfc9629
 cat: std
 wg: LAMPS Working Group
 consensus: 'true'
@@ -14,8 +14,7 @@ title: 'Using Key Encapsulation Mechanism (KEM) Algorithms in the Cryptographic 
 abbrev: CMS KEMRecipientInfo
 submissionType: IETF
 area: "Security"
-kw: Internet-Draft
-date:
+date: 2024-08
 
 author:
 -
@@ -35,10 +34,8 @@ author:
   fullname:
     :: 大久保　智史
     ascii: Tomofumi Okubo
-  org: DigiCert, Inc.
-  abbrev: DigiCert
-  city: Fairfax, VA
-  country: US
+  org: Penguin Securities Pte. Ltd.
+  country: Singapore
   email: tomofumi.okubo+ietf@gmail.com
 
 informative:
@@ -125,16 +122,16 @@ level of security as the KEM algorithm.
 
 A KEM algorithm provides three functions:
 
-* KeyGen() -> (pk, sk):
+KeyGen() -> (pk, sk):
 
 > Generate the public key (pk) and a private key (sk).
 
-* Encapsulate(pk) -> (ct, ss):
+Encapsulate(pk) -> (ct, ss):
 
 > Given the recipient's public key (pk), produce a ciphertext (ct) to be
 passed to the recipient and shared secret (ss) for the originator.
 
-* Decapsulate(sk, ct) -> ss:
+Decapsulate(sk, ct) -> ss:
 
 > Given the private key (sk) and the ciphertext (ct), produce the
 shared secret (ss) for the recipient.
@@ -292,7 +289,6 @@ the value provided is consistent with the key-encryption algorithm
 identified in the wrap field below.
 
 > ukm is optional user keying material.  When the ukm value is provided,
-it must contain at least one octet, and
 it is used as part of the info structure described in {{kdf}} to
 provide a context input to the key-derivation function.  For example, the
 ukm value could include a nonce, application-specific context information,
@@ -319,7 +315,7 @@ the KEM algorithm used.  A Key derivation algorithm is used to transform
 the pairwise ss value into a KEK.
 
 ~~~
-  KEMAlgorithmIdentifier ::= AlgorithmIdentifier{ KEM-ALGORITHM, {...} }
+KEMAlgorithmIdentifier ::= AlgorithmIdentifier{ KEM-ALGORITHM, {...} }
 ~~~
 
 # Key Derivation {#kdf}
@@ -398,7 +394,7 @@ Both ASN.1 modules follow the conventions established in
   KEMAlgorithmInformation-2023
     { iso(1) identified-organization(3) dod(6) internet(1)
       security(5) mechanisms(5) pkix(7) id-mod(0)
-          id-mod-kemAlgorithmInformation-2023(TBD3) }
+          id-mod-kemAlgorithmInformation-2023(109) }
 
   DEFINITIONS EXPLICIT TAGS ::=
   BEGIN
@@ -414,7 +410,7 @@ Both ASN.1 modules follow the conventions established in
   --
   --  Describes the basic properties of a KEM algorithm
   --
-  -- Suggested prefixes for KEM algorithm objects is: kema-
+  -- Suggested prefix for KEM algorithm objects is: kema-
   --
   --  &id - contains the OID identifying the KEM algorithm
   --  &Value - if present, contains a type definition for the kemct;
@@ -463,16 +459,13 @@ Both ASN.1 modules follow the conventions established in
 ~~~
 {: sourcecode-markers='true'}
 
-## CMS-KEMRecipientInfo ASN.1 Module {#asn1-mod-2}
-
-RFC Editor: Please replace "[THISRFC]" with the the number assigned
-to this document.
+## CMS-KEMRecipientInfo-2023 ASN.1 Module {#asn1-mod-2}
 
 ~~~ asn.1
   CMS-KEMRecipientInfo-2023
     { iso(1) member-body(2) us(840) rsadsi(113549)
       pkcs(1) pkcs-9(9) smime(16) modules(0)
-      id-mod-cms-kemri-2023(TBD2) }
+      id-mod-cms-kemri-2023(77) }
 
   DEFINITIONS IMPLICIT TAGS ::=
   BEGIN
@@ -481,17 +474,17 @@ to this document.
     OTHER-RECIPIENT, CMSVersion, RecipientIdentifier,
     EncryptedKey, KeyDerivationAlgorithmIdentifier,
     KeyEncryptionAlgorithmIdentifier, UserKeyingMaterial
-      FROM CryptographicMessageSyntax-2010  -- [RFC6268]
+      FROM CryptographicMessageSyntax-2010  -- RFC 6268
         { iso(1) member-body(2) us(840) rsadsi(113549)
           pkcs(1) pkcs-9(9) smime(16) modules(0)
           id-mod-cms-2009(58) }
     KEM-ALGORITHM
-      FROM KEMAlgorithmInformation-2023  -- [THISRFC]
+      FROM KEMAlgorithmInformation-2023  -- RFC 9629
         { iso(1) identified-organization(3) dod(6) internet(1)
           security(5) mechanisms(5) pkix(7) id-mod(0)
-          id-mod-kemAlgorithmInformation-2023(TBD3) }
+          id-mod-kemAlgorithmInformation-2023(109) }
     AlgorithmIdentifier{}
-      FROM AlgorithmInformation-2009  -- [RFC5912]
+      FROM AlgorithmInformation-2009  -- RFC 5912
         { iso(1) identified-organization(3) dod(6) internet(1)
           security(5) mechanisms(5) pkix(7) id-mod(0)
           id-mod-algorithmInformation-02(58) } ;
@@ -545,12 +538,13 @@ to this document.
 
 # Security Considerations {#sec-cons}
 
-The Security Considerations of {{RFC5652}} are applicable to this document.
+The security considerations discussed in {{RFC5652}} are applicable to
+this document.
 
 To be appropriate for use with this specification, the KEM algorithm MUST
 explicitly be designed to be secure when the public key is used many
 times.  For example, a KEM algorithm with a single-use public key is not
-appropriate because the public key is expected to be carried in a
+appropriate, because the public key is expected to be carried in a
 long-lived certificate {{RFC5280}} and used over and over.  Thus, KEM
 algorithms that offer indistinguishability under adaptive chosen ciphertext
 attack (IND-CCA2) security are appropriate.  A common design pattern for
@@ -563,15 +557,14 @@ The KDF SHOULD offer at least the security level of the KEM.
 The choice of the key-encryption algorithm and the size of the
 KEK SHOULD be made based on the security level
 provided by the KEM. The key-encryption algorithm and the
-KEK SHOULD at least have the security level of
-the KEM.
+KEK SHOULD offer at least the security level of the KEM.
 
 KEM algorithms do not provide data origin authentication; therefore, when
 a KEM algorithm is used with the authenticated-data content type, the
 contents are delivered with integrity from an unknown source.
 
-Implementations MUST protect the KEM private key, the KEK, the CEK (or the
-CAEK).  Compromise of the KEM private key may
+Implementations MUST protect the KEM private key, the KEK, and the
+CEK (or the CAEK).  Compromise of the KEM private key may
 result in the disclosure of all contents protected with that KEM private key.
 However, compromise of the KEK, the CEK, or the CAEK may result in disclosure
 of the encrypted content of a single message.
@@ -593,32 +586,32 @@ KEK from the KEMRecipientInfo structure.
 Implementations MUST randomly generate content-encryption keys,
 content-authenticated-encryption keys, and message-authentication keys.
 Also, the generation of KEM key pairs relies on random numbers.  The use
-of inadequate pseudo-random number generators (PRNGs) to generate these
+of inadequate pseudorandom number generators (PRNGs) to generate these
 keys can result in little or no security.  An attacker may find it much
 easier to reproduce the PRNG environment that produced the keys,
-searching the resulting small set of possibilities, rather than brute
-force searching the whole key space.  The generation of quality random
+searching the resulting small set of possibilities, rather than brute-force
+searching the whole key space.  The generation of quality random
 numbers is difficult.  {{RFC4086}} offers important guidance in this area.
 
-If the cipher and key sizes used for the key-encryption and the
-content-encryption algorithms are different, the effective security is
+If the cipher and key sizes used for the key-encryption algorithm and the
+content-encryption algorithm are different, the effective security is
 determined by the weaker of the two algorithms.  If, for example, the
-content is encrypted with AES-CBC using a 128-bit CEK, and the CEK is
+content is encrypted with AES-CBC using a 128-bit CEK and the CEK is
 wrapped with AES-KEYWRAP using a 256-bit KEK, then at most 128 bits of
 protection is provided.
 
 If the cipher and key sizes used for the key-encryption and the
 content-authenticated-encryption algorithms are different, the effective
 security is determined by the weaker of the two algorithms.  If, for example,
-the content is encrypted with AES-GCM using a 128-bit
-CAEK, and the CAEK is wrapped with AES-KEYWRAP using a 192-bit KEK, then at
-most 128 bits of protection is provided.
+the content is encrypted with AES-GCM using a 128-bit CAEK and the CAEK is
+wrapped with AES-KEYWRAP using a 192-bit KEK, then at most 128 bits of
+protection is provided.
 
-If the cipher and key sizes used for the key-encryption and the
-message-authentication algorithms are different, the effective security is
+If the cipher and key sizes used for the key-encryption algorithm and the
+message-authentication algorithm are different, the effective security is
 determined by the weaker of the two algorithms.  If, for example, the
 content is authenticated with HMAC-SHA256 using a 512-bit
-message-authentication key, and the message-authentication key is wrapped
+message-authentication key and the message-authentication key is wrapped
 with AES-KEYWRAP using a 256-bit KEK, then at most 256 bits of
 protection is provided.
 
@@ -632,22 +625,31 @@ for the set of supported algorithms to change over time.
 
 # IANA Considerations {#iana}
 
-For KEMRecipientInfo in {{kemri}}, IANA has assigned the object identifier (OID)
-for (1.2.840.113549.1.9.16.13.3) in the "SMI Security for S/MIME Other Recipient
-Info Identifiers" registry (1.2.840.113549.1.9.16.13), and the Description
-for the new OID has been set to "id-ori-kem".
+For KEMRecipientInfo as defined in {{kemri}}, IANA has assigned the following
+OID in the "SMI Security for S/MIME Other Recipient Info Identifiers
+(1.2.840.113549.1.9.16.13) registry:
 
-For the ASN.1 Module in {{asn1-mod-1}}, IANA is requested to assign an
-object identifier (OID) for the module identifier to replace TBD3. The
-OID for the module should be allocated in the "SMI Security for PKIX
-Module Identifier" registry (1.3.6.1.5.5.7.0), and the Description
-for the new OID should be set to "id-mod-kemAlgorithmInformation-2023".
+| Decimal | Description | References |
+|=========|=============|============|
+| 3       | id-ori-kem  | RFC 9629   |
 
-For the ASN.1 Module in {{asn1-mod-2}}, IANA is requested to assign an
-object identifier (OID) for the module identifier to replace TBD2.  The
-OID for the module should be allocated in the "SMI Security for S/MIME
-Module Identifier" registry (1.2.840.113549.1.9.16.0), and the Description
-for the new OID should be set to "id-mod-cms-kemri-2023".
+For the ASN.1 module defined in {{asn1-mod-1}}, IANA has assigned
+the following OID the "SMI Security for PKIX Module Identifier
+(1.3.6.1.5.5.7.0)" registry:
+
+| Decimal | Description                         | References |
+|=========|=====================================|============|
+| 109     | id-mod-kemAlgorithmInformation-2023 | RFC 9629   |
+
+For the ASN.1 Module in {{asn1-mod-2}}, IANA has assigned
+the following OID in the "SMI Security for S/MIME Module Identifier
+(1.2.840.113549.1.9.16.0)" registry:
+
+| Decimal | Description           | References |
+|=========|=======================|============|
+| 77      | id-mod-cms-kemri-2023 | RFC 9629   |
+
+--- back
 
 # Acknowledgements
 {: numbered="no"}
@@ -664,5 +666,3 @@ David von Oheimb,
 Francois Rousseau, and
 Linda Dunbar
 for their careful review and thoughtful comments.
-
---- back
