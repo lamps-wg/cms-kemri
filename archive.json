@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T01:25:44.612778+00:00",
+  "timestamp": "2024-08-11T01:38:33.510078+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -575,6 +575,32 @@
           "updatedAt": "2024-03-07T14:17:44Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOJCFEHs54BI3P",
+      "title": "Align with RFC 9629",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/16",
+      "state": "OPEN",
+      "author": "russhousley",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Make the edits associated with RFC 9629",
+      "createdAt": "2024-08-10T19:07:49Z",
+      "updatedAt": "2024-08-10T19:07:49Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "3dce0171085a9f93804cbe15926bc1f9e1736619",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "russhousley-patch-1",
+      "headRefOid": "c0a9006ca9c8b570091cb16152283cc91cd47e79",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
