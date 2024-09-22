@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-19T01:39:49.210324+00:00",
+  "timestamp": "2024-09-22T01:47:26.930878+00:00",
   "repo": "lamps-wg/cms-kemri",
   "labels": [
     {
@@ -589,13 +589,68 @@
       "labels": [],
       "body": "Make the edits associated with RFC 9629",
       "createdAt": "2024-08-10T19:07:49Z",
-      "updatedAt": "2024-08-10T19:07:49Z",
+      "updatedAt": "2024-09-20T17:49:10Z",
       "baseRepository": "lamps-wg/cms-kemri",
       "baseRefName": "main",
       "baseRefOid": "3dce0171085a9f93804cbe15926bc1f9e1736619",
       "headRepository": "lamps-wg/cms-kemri",
       "headRefName": "russhousley-patch-1",
       "headRefOid": "c0a9006ca9c8b570091cb16152283cc91cd47e79",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "russhousley",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I do not know if that works with the GitHub automation, but I have no objection.\r\n\r\n> On Sep 20, 2024, at 10:44 AM, Sean Turner ***@***.***> wrote:\r\n> \r\n> \r\n> @seanturner commented on this pull request.\r\n> \r\n> In draft-ietf-lamps-cms-kemri.md <https://github.com/lamps-wg/cms-kemri/pull/16#discussion_r1768754441>:\r\n> \r\n> > @@ -1,7 +1,7 @@\r\n>  ---\r\n>  stand_alone: true\r\n>  ipr: trust200902\r\n> -docname: draft-ietf-lamps-cms-kemri-latest\r\n> +docname: rfc9629\r\n> \u2b07\ufe0f Suggested change\r\n> -docname: rfc9629\r\n> +docname: rfc9629-latest\r\n> Would this work?\r\n> \r\n> \u2014\r\n> Reply to this email directly, view it on GitHub <https://github.com/lamps-wg/cms-kemri/pull/16#pullrequestreview-2318503631>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/AGCZFQZW6AX4BYHWMBP35MTZXQYDNAVCNFSM6AAAAABMKBY54CVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZDGMJYGUYDGNRTGE>.\r\n> You are receiving this because you authored the thread.\r\n> \r\n\r\n",
+          "createdAt": "2024-09-20T17:49:08Z",
+          "updatedAt": "2024-09-20T17:49:08Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJCFEHs6KMY7P",
+          "commit": {
+            "abbreviatedOid": "c0a9006"
+          },
+          "author": "seanturner",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-20T14:43:44Z",
+          "updatedAt": "2024-09-20T14:43:44Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\ndocname: rfc9629-latest\r\n\r\n```\r\nWould this work?",
+              "createdAt": "2024-09-20T14:43:44Z",
+              "updatedAt": "2024-09-20T14:43:44Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOJCFEHs58LYf6",
+      "title": "Update workflow",
+      "url": "https://github.com/lamps-wg/cms-kemri/pull/17",
+      "state": "OPEN",
+      "author": "seanturner",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update update.yml.",
+      "createdAt": "2024-09-20T14:39:56Z",
+      "updatedAt": "2024-09-20T14:42:07Z",
+      "baseRepository": "lamps-wg/cms-kemri",
+      "baseRefName": "main",
+      "baseRefOid": "3dce0171085a9f93804cbe15926bc1f9e1736619",
+      "headRepository": "lamps-wg/cms-kemri",
+      "headRefName": "seanturner-update-workflow",
+      "headRefOid": "ba58f25088892ca142193ab1baccdecfb3de3247",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
